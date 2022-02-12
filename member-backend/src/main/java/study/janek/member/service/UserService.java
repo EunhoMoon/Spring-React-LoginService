@@ -25,7 +25,11 @@ public class UserService {
 	public List<User> getUserAll() {
 		return userMapper.getUserAll();
 	}
-	
+
+	public User getUserById(Long id) {
+		return userMapper.getUserById(id);
+	}
+
 	public User findByUsername(String username) {
 		return userMapper.findByUsername(username);
 	}

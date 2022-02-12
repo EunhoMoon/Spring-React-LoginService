@@ -27,6 +27,11 @@ public class UserController {
 	public List<User> getUserAll() {
 		return userService.getUserAll();
 	}
+
+	@GetMapping("/{id}")
+	public User getUserById(@PathVariable("id") Long id) {
+		return userService.getUserById(id);
+	}
 	
 	@GetMapping("/{username}")
 	public User findByUsername(@PathVariable("username") String username) {
