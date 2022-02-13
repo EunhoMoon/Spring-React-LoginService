@@ -6,10 +6,24 @@ const Join = () => {
   return (
     <div className="container">
       <Form>
-        <Form.Group className="mb-3 col-xs-4">
-          <Form.Label>ID</Form.Label>
-          <Form.Control type="text" placeholder="아이디를 입력하세요." />
-          <Link className="m-3 btn btn-outline-primary">중복확인</Link>
+        <Form.Group className="mb-3 mt-3 col-xs-4">
+          <label>ID</label>
+          <div class="input-group mt-2">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Recipient's username"
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+            />
+            <button
+              class="btn btn-outline-primary"
+              type="button"
+              id="button-addon2"
+            >
+              Button
+            </button>
+          </div>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -19,13 +33,13 @@ const Join = () => {
 
         <Row>
           <Form.Group as={Col} md="4" controlId="validationCustom02">
-            <Form.Label>Last name</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control type="text" placeholder="이메일을 입력하세요" />
           </Form.Group>
 
           <Form.Group as={Col} md="4">
-            <Form.Label>Username</Form.Label>
-            <InputGroup hasValidation>
+            <Form.Label>Domain</Form.Label>
+            <InputGroup>
               <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
               <Form.Select>
                 <option>도메인을 선택하세요.</option>
