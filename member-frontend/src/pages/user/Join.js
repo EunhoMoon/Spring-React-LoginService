@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Col, Form, InputGroup, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Join = () => {
+  const [user, setuser] = useState({
+    username: '',
+    password: '',
+    email: '',
+  });
+
+  const changeValue = (e) => {
+    setuser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const chekId = (e) => {
+    fetch('http://localhost:9595/user/' + user.username)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.username === user.username) {
+          alert('현재 사용중인 아이디 입니다.');
+        } else {
+          alert('사용 가능한 아이디 입니다.');
+        }
+      });
+  };
+
   return (
     <div className="container">
       <Form>
@@ -20,6 +45,7 @@ const Join = () => {
               class="btn btn-outline-primary"
               type="button"
               id="button-addon2"
+              onClick={chekId}
             >
               중복확인
             </button>
