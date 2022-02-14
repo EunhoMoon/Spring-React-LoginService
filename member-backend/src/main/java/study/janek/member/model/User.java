@@ -6,7 +6,7 @@ public class User {
 
 	private Long id; // DB에 저장될 id값, pk
 	private String username; // user가 사용할 id
-	private String pwd; // password
+	private String password; // password
 	private String name; // 이름
 	private String email; // email
 	private String role; // 회원 구분 ADMIN/USER
@@ -29,12 +29,12 @@ public class User {
 		this.username = username;
 	}
 
-	public String getPwd() {
-		return pwd;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getName() {
@@ -79,7 +79,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", pwd=" + pwd + ", name=" + name + ", email=" + email
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name + ", email=" + email
 				+ ", role=" + role + ", createDate=" + createDate + ", lastLogin=" + lastLogin + "]";
 	}
 

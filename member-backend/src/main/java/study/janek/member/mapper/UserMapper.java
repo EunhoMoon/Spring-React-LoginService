@@ -17,4 +17,8 @@ public interface UserMapper {
 	User getUserById(Long id);
 
 	User findByUsername(String username);
+	
+	void updateLastLogin(User user);
+	
+	User loginProc(User user);
 }

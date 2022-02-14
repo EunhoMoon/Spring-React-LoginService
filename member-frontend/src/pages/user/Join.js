@@ -21,7 +21,7 @@ const Join = () => {
               type="button"
               id="button-addon2"
             >
-              Button
+              중복확인
             </button>
           </div>
         </Form.Group>
@@ -41,7 +41,7 @@ const Join = () => {
             <Form.Label>Domain</Form.Label>
             <InputGroup>
               <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-              <Form.Select>
+              <Form.Select size="sm">
                 <option>도메인을 선택하세요.</option>
               </Form.Select>
               <Form.Control.Feedback type="invalid">
