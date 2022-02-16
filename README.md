@@ -1,13 +1,15 @@
-# React-Springboot Book Project
+# Spring-React-Toy-Project
 
 ### Springboot
 
 - Springboot ^2.0
 - MyBatis
-- MySQL
+- MySQL/MariaDB
 - Maven
+<!-- 
 - Security
 - OAuth2
+ -->
 
 ### React
 
@@ -30,3 +32,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   "printWidth": 80
 }
 ```
+
+### To Do List
+- JWT 토큰 및 암호화, 권한 설정
+- 게시판 글 목록, 글 등록/수정/삭제
+- 게시글 조회수 
