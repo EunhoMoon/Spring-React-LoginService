@@ -1,8 +1,13 @@
 {
-  "editor.fontFamily": "D2Coading ligature",
-  "singleQuote": true,
-  "semi": true,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "printWidth": 80
+  "editor.fontFamily": "CookieRun",
+  "editor.formatOnSave": true,
+  "terminal.integrated.fontFamily": "D2Coding ligature",
+  "editor.fontWeight": "500",
+  "editor.fontLigatures": true,
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+  "workbench.colorTheme": "Visual Studio Dark",
+  "editor.fontSize": 13,
+  "window.zoomLevel": 1
 }

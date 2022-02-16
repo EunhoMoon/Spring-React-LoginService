@@ -4,7 +4,7 @@ const Page = ({ pNum, totalPage }) => {
   let items = [];
 
   for (let i = 1; i <= totalPage; i++) {
-    const isActive = i == pNum ? 'active' : '';
+    const isActive = i === pNum ? 'active' : '';
     items.push(
       <li className={'page-item ' + isActive} key={i} onClick={() => {}}>
         <Link className="page-link" to={'/user/list/' + i}>

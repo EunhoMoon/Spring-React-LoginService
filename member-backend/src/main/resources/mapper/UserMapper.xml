@@ -21,6 +21,7 @@
 		SELECT 
 			*
 		FROM user
+		WHERE role = 'USER'
 		LIMIT #{pageNum}, 10
 	</select>
 
