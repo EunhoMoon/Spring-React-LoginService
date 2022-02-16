@@ -4,7 +4,7 @@
 
 - Springboot ^2.0
 - MyBatis
-- MySQL
+- MySQL/MariaDB
 - Maven
 - Security
 - OAuth2
