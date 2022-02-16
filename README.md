@@ -1,4 +1,4 @@
-# Spring-React-LoginService
+# Spring-React-Toy-Project
 
 ### Springboot
 
