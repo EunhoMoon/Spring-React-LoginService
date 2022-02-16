@@ -1,7 +1,8 @@
 {
-    "singleQuote": true,
-    "semi": true,
-    "tabWidth": 2,
-    "trailingComma": "all",
-    "printWidth": 80
-  }
+  "editor.fontFamily": "D2Coading ligature",
+  "singleQuote": true,
+  "semi": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "printWidth": 80
+}

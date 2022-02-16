@@ -22,8 +22,10 @@ public class UserRestController {
 	private UserService userService;
 	
 	@PostMapping("/join")
-	public void joinUser(@RequestBody User user) {
+	public String joinUser(@RequestBody User user) {
 		userService.joinUser(user);
+		
+		return "success";
 	}
 	
 	@GetMapping("/loginProc")
@@ -44,7 +46,12 @@ public class UserRestController {
 	
 	@GetMapping("/user/name/{username}")
 	public User findByUsername(@PathVariable("username") String username) {
-		return userService.findByUsername(username);
+		User userEntity = userService.findByUsername(username);
+		
+		if (userEntity == null)	userEntity.setUsername("없음");
+		System.out.println(userEntity.getUsername());
+		
+		return userEntity;
 	}
 	
 	@PostMapping("/loginProc")

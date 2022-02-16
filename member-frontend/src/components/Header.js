@@ -7,16 +7,16 @@ const Header = () => {
     <Navbar bg="dark" variant="dark">
       <Container>
         <Link to={'/'} className="navbar-brand">
-          Navbar
+          Home
         </Link>
         <Nav className="me-auto">
-          <Link className="nav-link" to="/">
-            Home
+          <Link className="nav-link" to="/login">
+            Login
           </Link>
           <Link className="nav-link" to="/join">
             Join
           </Link>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to="/user/list">
             Member
           </Link>
         </Nav>
