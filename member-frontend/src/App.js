@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Join from './pages/user/Join';
 import Login from './pages/user/Login';
 import Success from './pages/user/Success';
+import './css/Page.css';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       <Route path={'/'} exact={true} component={Home} />
       <Route path={'/join'} exact={true} component={Join} />
       <Route path={'/login'} exact={true} component={Login} />
-      <Route path={'/user/list'} exact={true} component={UserList} />
+      <Route path={'/user/list/:pNum'} exact={true} component={UserList} />
       <Route path={'/user/detail/:id'} exact={true} component={UserDetail} />
       <Route path={'/success'} exact={true} component={Success} />
     </div>

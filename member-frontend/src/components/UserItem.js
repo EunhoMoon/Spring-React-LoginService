@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 const UserItem = (props) => {
   const { id, username, name, createDate, lastLogin } = props.user;
+  const { pNum } = props;
+
   return (
     <tr className="align-middle">
       <td className="text-center">{id}</td>
@@ -15,7 +17,13 @@ const UserItem = (props) => {
           : '-'}
       </td>
       <td className="text-center">
-        <Link to={'/user/detail/' + id} className="btn btn-secondary btn-sm">
+        <Link
+          to={{
+            pathname: '/user/detail/' + id,
+            state: { pNum },
+          }}
+          className="btn btn-secondary btn-sm"
+        >
           Details
         </Link>
       </td>

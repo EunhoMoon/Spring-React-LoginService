@@ -16,7 +16,7 @@ const Header = () => {
           <Link className="nav-link" to="/join">
             Join
           </Link>
-          <Link className="nav-link" to="/user/list">
+          <Link className="nav-link" to="/user/list/1">
             Member
           </Link>
         </Nav>

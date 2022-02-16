@@ -10,13 +10,15 @@ import study.janek.member.model.User;
 @Mapper
 public interface UserMapper {
 
-	void joinUser(User user);
+	int joinUser(User user);
 	
 	List<User> getUserAll();
+	
+	List<User> getUserList(int pageNum);
 
 	User getUserById(Long id);
 
-	User findByUsername(String username);
+	User findByUsername(String username) throws Exception;
 	
 	void updateLastLogin(User user);
 	

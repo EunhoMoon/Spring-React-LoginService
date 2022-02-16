@@ -11,10 +11,17 @@
 		VALUES (#{username}, #{password}, #{name}, #{email})
 	</insert>
 	
-	<select id="getUserAll" parameterType="study.janek.member.model.User" resultType="study.janek.member.model.User">
+	<select id="getUserAll" resultType="study.janek.member.model.User">
 		SELECT 
 			*
 		FROM user
+	</select>
+	
+	<select id="getUserList" parameterType="int" resultType="study.janek.member.model.User">
+		SELECT 
+			*
+		FROM user
+		LIMIT #{pageNum}, 10
 	</select>
 
 	<select id="getUserById"  parameterType="study.janek.member.model.User" resultType="study.janek.member.model.User">

@@ -22,21 +22,21 @@ public class UserRestController {
 	private UserService userService;
 	
 	@PostMapping("/join")
-	public String joinUser(@RequestBody User user) {
-		userService.joinUser(user);
+	public int joinUser(@RequestBody User user) throws Exception {
+		int result = 0;
+		result = userService.joinUser(user);
 		
-		return "success";
-	}
-	
-	@GetMapping("/loginProc")
-	public String loginProc() {
-//		userService.updateLastLogin();
-		return "success";
+		return result;
 	}
 	
 	@GetMapping("/user/all")
 	public List<User> getUserAll() {
 		return userService.getUserAll();
+	}
+	
+	@GetMapping("/user/list/{pageNum}")
+	public List<User> getUserList(@PathVariable("pageNum") int pageNum) {
+		return userService.getUserList(pageNum);
 	}
 
 	@GetMapping("/user/id/{id}")
@@ -45,7 +45,7 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/user/name/{username}")
-	public User findByUsername(@PathVariable("username") String username) {
+	public User findByUsername(@PathVariable("username") String username) throws Exception {
 		User userEntity = userService.findByUsername(username);
 		
 		if (userEntity == null)	userEntity.setUsername("없음");
@@ -55,7 +55,8 @@ public class UserRestController {
 	}
 	
 	@PostMapping("/loginProc")
-	public String loginProc(@RequestBody User user) {
+	public int loginProc(@RequestBody User user) {
+		int result = 0;
 		User userDto = new User();
 		userDto.setUsername(user.getUsername());
 		userDto.setPassword(user.getPassword());
@@ -64,10 +65,10 @@ public class UserRestController {
 		
 		if (userLogin != null) {
 			userService.updateLastLogin(userLogin);
-			return "success";
-		} else {
-			return "fail";
+			result = 1;
 		}
+		
+		return result;
 	}
 	
 	

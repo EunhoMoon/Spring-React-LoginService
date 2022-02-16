@@ -1,6 +1,7 @@
 package study.janek.member.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,20 +20,41 @@ public class UserService {
 		this.userMapper = userMapper;
 	}
 	
-	public void joinUser(User user) {
-		userMapper.joinUser(user);
+	public int joinUser(User user) throws Exception {
+		int result = 0;
+		User userEntity;
+		
+		userEntity = findByUsername(user.getUsername());
+		
+		if (userEntity == null) {
+			result = userMapper.joinUser(user);
+		}
+
+		return result;
 	}
 	
 	public List<User> getUserAll() {
 		return userMapper.getUserAll();
+	}
+	
+	public List<User> getUserList(int pageNum) {
+		pageNum = (pageNum - 1) * 10;
+		return userMapper.getUserList(pageNum);
 	}
 
 	public User getUserById(Long id) {
 		return userMapper.getUserById(id);
 	}
 
-	public User findByUsername(String username) {
-		return userMapper.findByUsername(username);
+	public User findByUsername(String username) throws Exception {
+		User user = null;
+		Optional<User> userInfo = Optional.ofNullable(userMapper.findByUsername(username));
+		
+		if (userInfo.isPresent()) {
+			user = userInfo.get();
+		}
+		
+		return user;
 	}
 	
 	public void updateLastLogin(User user) {

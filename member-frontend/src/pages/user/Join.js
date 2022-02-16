@@ -66,7 +66,8 @@ const Join = (props) => {
     })
       .then((res) => res.text())
       .then((res) => {
-        if (res === 'success') {
+        console.log(res);
+        if (res == 1) {
           alert('회원 가입에 성공하였습니다.');
           props.history.push('/login');
         } else {

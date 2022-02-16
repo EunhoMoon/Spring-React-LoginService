@@ -27,11 +27,12 @@ const Login = (props) => {
     })
       .then((res) => res.text())
       .then((res) => {
-        if (res === 'success') {
+        console.log(res);
+        if (res == 1) {
           alert(user.username + '님 환영합니다');
           props.history.push('/');
         } else {
-          alert('login 실패');
+          alert('로그인 실패. 아이디와 비밀번호를 확인하세요.');
         }
       });
   };

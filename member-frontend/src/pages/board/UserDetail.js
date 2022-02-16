@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // Link to 를 이용해 param을 받기 위해 사용
 
 const UserDetail = (props) => {
+  const pNum = useLocation().state.pNum; // location을 사용하기 위해 선언
   const id = props.match.params.id;
+  // const pNum = location.state.pNum;
 
   const [user, setUser] = useState({
     id: '',
@@ -28,7 +31,7 @@ const UserDetail = (props) => {
   return (
     <div className="w-75 p-3 container">
       <div className="d-flex flex-row-reverse">
-        <Link to={'/user/list'} className="btn btn-secondary mb-1">
+        <Link to={'/user/list/' + pNum} className="btn btn-secondary mb-1">
           목록으로
         </Link>
       </div>
