@@ -6,8 +6,10 @@
 - MyBatis
 - MySQL/MariaDB
 - Maven
+<!-- 
 - Security
 - OAuth2
+ -->
 
 ### React
 
