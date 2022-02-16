@@ -33,7 +33,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 }
 ```
 
-#### 구현 계획
+### To Do List
 - JWT 토큰 및 암호화, 권한 설정
 - 게시판 글 목록, 글 등록/수정/삭제
 - 게시글 조회수 
