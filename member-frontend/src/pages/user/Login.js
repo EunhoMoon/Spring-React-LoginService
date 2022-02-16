@@ -30,7 +30,17 @@ const Login = (props) => {
         console.log(res);
         if (res == 1) {
           alert(user.username + '님 환영합니다');
-          props.history.push('/');
+          sessionStorage.setItem('username', user.username);
+          fetch('http://localhost:9595/user/name/' + user.username, {
+            method: 'GET',
+          })
+            .then((result) => result.json())
+            .then((result) => {
+              console.log(result);
+              sessionStorage.setItem('id', result.id);
+              sessionStorage.setItem('role', result.role);
+            });
+          window.location.replace('/');
         } else {
           alert('로그인 실패. 아이디와 비밀번호를 확인하세요.');
         }

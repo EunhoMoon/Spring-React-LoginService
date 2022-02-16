@@ -1,4 +1,3 @@
-import { Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Page = ({ pNum, totalPage }) => {
