@@ -22,7 +22,6 @@ function App() {
       setIsLogin(true);
       if (sessionStorage.getItem('role') === 'ADMIN') {
         setIsAdmin(true);
-        window.location.replace('/');
       }
     }
   }, []);

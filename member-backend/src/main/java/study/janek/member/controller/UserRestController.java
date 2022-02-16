@@ -54,8 +54,7 @@ public class UserRestController {
 	}
 	
 	@PostMapping("/loginProc")
-	public int loginProc(@RequestBody User user) {
-		int result = 0;
+	public User loginProc(@RequestBody User user) {
 		User userDto = new User();
 		userDto.setUsername(user.getUsername());
 		userDto.setPassword(user.getPassword());
@@ -64,10 +63,9 @@ public class UserRestController {
 		
 		if (userLogin != null) {
 			userService.updateLastLogin(userLogin);
-			result = 1;
 		}
 		
-		return result;
+		return userLogin;
 	}
 	
 	
