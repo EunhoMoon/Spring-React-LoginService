@@ -58,7 +58,7 @@ const BoardWrite = (props) => {
             onChange={changeValue}
           />
         </Form.Group>
-        <WriteForm setContent={setContent} className="mb-0" />
+        <WriteForm setContent={setContent} content={''} className="mb-0" />
         <div className="d-flex flex-row-reverse mt-0">
           <Button
             type="submit"
