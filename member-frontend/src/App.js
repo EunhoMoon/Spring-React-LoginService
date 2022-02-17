@@ -13,6 +13,7 @@ import BoardDetail from './pages/board/BoardDetail';
 import Logout from './pages/user/Logout';
 import BoardWrite from './pages/board/BoardWrite';
 import { createGlobalStyle } from 'styled-components';
+import BoardUpdate from './pages/board/BoardUpdate';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -45,6 +46,7 @@ function App() {
       <Route path={'/user/detail/:id'} exact={true} component={UserDetail} />
       <Route path={'/board/list/:pNum'} exact={true} component={BoardList} />
       <Route path={'/board/write'} exact={true} component={BoardWrite} />
+      <Route path={'/board/update'} exact={true} component={BoardUpdate} />
       <Route path={'/board/detail/:id'} exact={true} component={BoardDetail} />
       <Route path={'/success'} exact={true} component={Success} />{' '}
     </div>

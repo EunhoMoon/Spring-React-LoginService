@@ -32,8 +32,8 @@ const UserList = (props) => {
   }, [pNum]);
 
   return (
-    <div>
-      <Table striped bordered hover variant="dark">
+    <div className="container mt-2">
+      <Table striped bordered hover variant="dark" className=" text-center">
         <thead>
           <tr>
             <th>no</th>
@@ -41,7 +41,7 @@ const UserList = (props) => {
             <th>Name</th>
             <th>Join Date</th>
             <th>Last Login</th>
-            <th>more</th>
+            <th>Detail</th>
           </tr>
         </thead>
         <tbody>

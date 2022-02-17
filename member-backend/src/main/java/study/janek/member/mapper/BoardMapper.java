@@ -18,4 +18,8 @@ public interface BoardMapper {
 	
 	BoardDto getBoardById(Long id);
 	
+	int deleteBoardById(Long id);
+	
+	int updateBoard(Board board);
+	
 }

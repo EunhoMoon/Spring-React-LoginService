@@ -17,7 +17,6 @@ const Login = (props) => {
 
   const submitLogin = (e) => {
     e.preventDefault();
-    console.log(user);
     fetch('http://localhost:9595/loginProc', {
       method: 'POST',
       headers: {

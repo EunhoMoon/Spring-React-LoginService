@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import styled from 'styled-components';
-import { convertToRaw, EditorState } from 'draft-js';
+import { convertToRaw, EditorState, ContentState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 
 const MyBlock = styled.div`
   .wrapper-class {
     width: 100%;
     margin: 0 auto;
     margin-bottom: 1rem;
+  }
+  .wrapper-class a {
+    text-decoration: none;
+    color: black;
   }
   .editor {
     height: 500px !important;
@@ -20,29 +25,31 @@ const MyBlock = styled.div`
   }
 `;
 
-const IntroduceContent = styled.div`
-  position: relative;
-  border: 0.0625rem solid #d7e2eb;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  padding: 1.5rem;
-  width: 50%;
-  margin: 0 auto;
-  margin-bottom: 4rem;
-`;
-
-const WriteForm = (props) => {
+const WriteForm = ({ setContent, content }) => {
   // useState로 상태관리하기 초기값은 EditorState.createEmpty()
   // EditorState의 비어있는 ContentState 기본 구성으로 새 개체를 반환 => 이렇게 안하면 상태 값을 나중에 변경할 수 없음.
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
+  console.log('content', content);
+
   const onEditorStateChange = (editorState) => {
     // editorState에 값 설정
     setEditorState(editorState);
-    props.setContent(
-      draftToHtml(convertToRaw(editorState.getCurrentContent())),
-    );
+    setContent(draftToHtml(convertToRaw(editorState.getCurrentContent())));
   };
+
+  useEffect(() => {
+    const blocksFromHtml = htmlToDraft(content);
+    if (blocksFromHtml) {
+      const { contentBlocks, entityMap } = blocksFromHtml;
+      const contentState = ContentState.createFromBlockArray(
+        contentBlocks,
+        entityMap,
+      );
+      const editorState = EditorState.createWithContent(contentState);
+      setEditorState(editorState);
+    }
+  }, []);
 
   return (
     <MyBlock className="mb-0">

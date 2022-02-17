@@ -27,4 +27,14 @@
 		WHERE a.writer = b.id AND a.id=#{id}
 	</select>
 	
+	<delete id="deleteBoardById" parameterType="Long">
+		DELETE FROM board WHERE id=#{id}
+	</delete>
+	
+	<update id="updateBoard" parameterType="study.janek.member.model.Board">
+		UPDATE board set
+		title=#{title}, content=#{content}
+		WHERE id=#{id}
+	</update>
+	
 </mapper>

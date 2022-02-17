@@ -38,4 +38,19 @@ public class BoardService {
 	public BoardDto getBoardById(Long id) {
 		return boardMapper.getBoardById(id);
 	}
+	
+	public int deleteBoardById(Long id) {
+		int result = 0;
+		result = boardMapper.deleteBoardById(id);
+		
+		return result;
+	}
+	
+	public int updateBoard(Long id, Board board) {
+		int result = 0;
+		board.setId(id);
+		result = boardMapper.updateBoard(board);
+
+		return result;
+	}
 }

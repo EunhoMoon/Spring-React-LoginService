@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, FormControl, InputGroup } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 import WriteForm from '../../components/WriteForm';
 
 const BoardWrite = (props) => {
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
-
-  console.log(sessionStorage.getItem('id'));
 
   const [board, setBoard] = useState({
     title: '',
