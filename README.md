@@ -16,9 +16,13 @@
 - npm i react-router-dom@5.2.0
 - npm i redux react-redux
 - npm i react-bootstrap bootstrap
+<!--
 - npm i react-summernote
 - npm i jquery
-- npm i -D webpack webpack-cli
+  -->
+- npm i styled-components
+- npm i react-draft-wysiwyg draft-js
+- npm i draftjs-to-html
 
 ```txt
 import 'bootstrap/dist/css/bootstrap.min.css';

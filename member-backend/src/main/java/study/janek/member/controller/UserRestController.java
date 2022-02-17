@@ -16,23 +16,23 @@ import study.janek.member.service.UserService;
 @CrossOrigin("*")
 @RestController
 public class UserRestController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@PostMapping("/join")
 	public int joinUser(@RequestBody User user) throws Exception {
 		int result = 0;
 		result = userService.joinUser(user);
-		
+
 		return result;
 	}
-	
+
 	@GetMapping("/user/all")
 	public List<User> getUserAll() {
 		return userService.getUserAll();
 	}
-	
+
 	@GetMapping("/user/list/{pageNum}")
 	public List<User> getUserList(@PathVariable("pageNum") int pageNum) {
 		return userService.getUserList(pageNum);
@@ -42,31 +42,31 @@ public class UserRestController {
 	public User getUserById(@PathVariable("id") Long id) {
 		return userService.getUserById(id);
 	}
-	
+
 	@GetMapping("/user/name/{username}")
 	public User findByUsername(@PathVariable("username") String username) throws Exception {
 		User userEntity = userService.findByUsername(username);
-		
-		if (userEntity == null)	userEntity.setUsername("없음");
+
+		if (userEntity == null)
+			userEntity.setUsername("없음");
 		System.out.println(userEntity.getUsername());
-		
+
 		return userEntity;
 	}
-	
+
 	@PostMapping("/loginProc")
 	public User loginProc(@RequestBody User user) {
 		User userDto = new User();
 		userDto.setUsername(user.getUsername());
 		userDto.setPassword(user.getPassword());
-		
+
 		User userLogin = userService.loginProc(userDto);
-		
+
 		if (userLogin != null) {
 			userService.updateLastLogin(userLogin);
 		}
-		
+
 		return userLogin;
 	}
-	
-	
+
 }

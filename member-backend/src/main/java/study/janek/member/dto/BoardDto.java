@@ -1,59 +1,50 @@
-package study.janek.member.model;
+package study.janek.member.dto;
 
 import java.sql.Timestamp;
 
-public class Board {
-	
+public class BoardDto {
+
 	private Long id;
 	private String title;
 	private String content;
-	private Long writer;
+	private String username;
 	private Timestamp writeDate;
-
+	
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getContent() {
 		return content;
 	}
-
 	public void setContent(String content) {
 		this.content = content;
 	}
-
-	public Long getWriter() {
-		return writer;
+	public String getUsername() {
+		return username;
 	}
-
-	public void setWriter(Long writer) {
-		this.writer = writer;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
 	public Timestamp getWriteDate() {
 		return writeDate;
 	}
-
 	public void setWriteDate(Timestamp writeDate) {
 		this.writeDate = writeDate;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Board [id=" + id + ", title=" + title + ", content=" + content + ", writer=" + writer + ", writeDate="
-				+ writeDate + "]";
+		return "BoardDto [id=" + id + ", title=" + title + ", content=" + content + ", username=" + username
+				+ ", writeDate=" + writeDate + "]";
 	}
-
+	
 }

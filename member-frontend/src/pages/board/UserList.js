@@ -4,10 +4,10 @@ import Page from '../../components/Page';
 import UserItem from '../../components/UserItem';
 
 const UserList = (props) => {
-  const pNum = props.match.params.pNum;
+  const pNum = props.match.params.pNum; // 현재 페이지 번호
+  const [totalPage, setTotalPage] = useState(); // 총 페이지 수
   const [users, setUsers] = useState([]);
-  const [pageNum, setPageNum] = useState(1);
-  const [totalPage, setTotalPage] = useState();
+  const link = '/user/list/';
 
   useEffect(() => {
     fetch('http://localhost:9595/user/list/' + pNum, {
@@ -51,7 +51,7 @@ const UserList = (props) => {
         </tbody>
       </Table>
 
-      <Page pNum={pNum} totalPage={totalPage} />
+      <Page pNum={pNum} totalPage={totalPage} link={link} />
     </div>
   );
 };

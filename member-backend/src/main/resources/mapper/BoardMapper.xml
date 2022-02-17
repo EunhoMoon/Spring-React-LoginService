@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="study.janek.member.mapper.BoardMapper">
+
+	<insert id="insertBoard" parameterType="study.janek.member.model.Board">
+		INSERT INTO board (title, writer, content) 
+		VALUES (#{title}, #{writer}, #{content})
+	</insert>
+	
+	<select id="getBoardAll" resultType="study.janek.member.model.Board">
+		SELECT 
+			*
+		FROM board
+	</select>
+	
+	<select id="getBoardList" parameterType="int" resultType="study.janek.member.dto.BoardDto">
+		SELECT a.id, a.title, b.username, a.writeDate  
+		FROM board a, user b WHERE a.writer = b.id
+		ORDER BY a.writeDate DESC
+		LIMIT #{pageNum}, 10
+	</select>
+	
+	<select id="getBoardById"  resultType="study.janek.member.dto.BoardDto">
+		SELECT a.id, a.title, b.username, a.writeDate, a.content  
+		FROM board a, user b 
+		WHERE a.writer = b.id AND a.id=#{id}
+	</select>
+	
+</mapper>

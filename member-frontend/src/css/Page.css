@@ -1,3 +1,6 @@
+body {
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -42,4 +45,18 @@ ul.pagination li a.active {
   width: 48px;
   height: 30px;
   color: #2a2b2c;
+}
+
+.linkText,
+.linkText :link,
+.linkText :active,
+.linkText :visited {
+  color: white;
+  text-decoration: none;
+}
+
+.linkText:hover {
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
 }
