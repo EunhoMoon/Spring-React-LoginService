@@ -11,6 +11,7 @@ import './css/Page.css';
 import BoardList from './pages/board/BoardList';
 import BoardDetail from './pages/board/BoardDetail';
 import Logout from './pages/user/Logout';
+import WriteForm from './pages/board/WriteForm';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -36,6 +37,7 @@ function App() {
       <Route path={'/user/list/:pNum'} exact={true} component={UserList} />
       <Route path={'/user/detail/:id'} exact={true} component={UserDetail} />
       <Route path={'/board/list/:pNum'} exact={true} component={BoardList} />
+      <Route path={'/board/write'} exact={true} component={WriteForm} />
       <Route path={'/board/detail/:id'} exact={true} component={BoardDetail} />
       <Route path={'/success'} exact={true} component={Success} />
     </div>

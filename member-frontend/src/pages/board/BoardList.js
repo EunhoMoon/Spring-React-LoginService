@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Page from '../../components/Page';
 
 const BoardList = () => {
@@ -8,6 +9,11 @@ const BoardList = () => {
 
   return (
     <div className="container mt-2">
+      <div className="d-flex flex-row-reverse">
+        <Link to={'/board/write/'} className="btn btn-secondary mb-1">
+          글쓰기
+        </Link>
+      </div>
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>
