@@ -70,3 +70,4 @@ CREATE TABLE board (
 - JWT 토큰 및 암호화, 권한 설정
 - 회원가입 validation chek
 - Server Log 설정
+- 게시판, 유저 정보 오류 수정
