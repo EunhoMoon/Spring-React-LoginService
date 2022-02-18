@@ -1,12 +1,12 @@
 package study.janek.member.dto;
 
-import java.sql.Timestamp;
-
 public class BoardDto {
 
 	private Long id;
+	private int no;
 	private String title;
 	private String content;
+	private Long writer;
 	private String username;
 	private String writeDate;
 	private int readCnt;
@@ -18,6 +18,14 @@ public class BoardDto {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public String getTitle() {
@@ -34,6 +42,14 @@ public class BoardDto {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public Long getWriter() {
+		return writer;
+	}
+
+	public void setWriter(Long writer) {
+		this.writer = writer;
 	}
 
 	public String getUsername() {
@@ -59,7 +75,7 @@ public class BoardDto {
 	public void setReadCnt(int readCnt) {
 		this.readCnt = readCnt;
 	}
-	
+
 	public boolean getIsNew() {
 		return isNew;
 	}

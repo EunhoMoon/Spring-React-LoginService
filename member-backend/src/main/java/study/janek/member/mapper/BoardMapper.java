@@ -12,9 +12,11 @@ public interface BoardMapper {
 	
 	int insertBoard(Board board);
 	
-	List<Board> getBoardAll();
+	List<Board> getBoardAll(String keyword);
 	
-	List<BoardDto> getBoardList(int pageNum);
+	List<BoardDto> getBoardList(int pageNum, String keyword);
+	
+	List<Board> getPostList(Long userId);
 	
 	BoardDto getBoardById(Long id);
 	

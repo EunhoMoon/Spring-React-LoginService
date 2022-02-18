@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'; // Link to 를 이용해 param을 받기 위해 사용
+import UserPost from './UserPost';
 
 const UserDetail = (props) => {
   const pNum = useLocation().state.pNum; // location을 사용하기 위해 선언
   const id = props.match.params.id;
+  const [posts, setPosts] = useState({ id: '', title: '', writeDate: '' });
   // const pNum = location.state.pNum;
 
   const [user, setUser] = useState({
@@ -25,6 +27,14 @@ const UserDetail = (props) => {
       .then((res) => res.json())
       .then((res) => {
         setUser(res);
+      });
+
+    fetch('http://localhost:9595/board/post/' + id, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setPosts(res);
       });
   }, []);
 
@@ -52,11 +62,11 @@ const UserDetail = (props) => {
             <td>{user.role === 'USER' ? 'User' : 'Admin'}</td>
           </tr>
           <tr>
-            <td>Join</td>
+            <th>Join</th>
             <td colSpan={3}>{user.createDate.substr(0, 10)}</td>
           </tr>
           <tr>
-            <td>Last Login</td>
+            <th>Last Login</th>
             <td colSpan={3}>
               {user.lastLogin != null
                 ? user.lastLogin.substr(0, 10) +
@@ -65,6 +75,31 @@ const UserDetail = (props) => {
                 : '-'}
             </td>
           </tr>
+        </tbody>
+        <tbody>
+          <tr align="center">
+            <th colSpan={3}>Post</th>
+            <th>Post Date</th>
+          </tr>
+          {posts.length > 0
+            ? posts.map((post) => (
+                <tr>
+                  <td colSpan={3}>
+                    {' '}
+                    <Link
+                      to={{
+                        pathname: '/board/detail/' + id,
+                        state: { pNum },
+                      }}
+                      className="linkText"
+                    >
+                      {post.title}
+                    </Link>
+                  </td>
+                  <td align="center">{post.writeDate.substr(0, 10)}</td>
+                </tr>
+              ))
+            : ''}
         </tbody>
       </Table>
     </div>

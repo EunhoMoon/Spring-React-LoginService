@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Button, FormControl, InputGroup, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import BoardItem from '../../components/BoardItem';
 import Page from '../../components/Page';
@@ -9,9 +9,21 @@ const BoardList = (props) => {
   const [totalPage, setTotalPage] = useState(); // 총 페이지 수
   const [boards, setBoards] = useState([]);
   const link = '/board/list/';
+  const [k, setK] = useState('');
+  const [keyword, setKeyword] = useState('');
+
+  const setKey = (e) => {
+    setK(e.target.value);
+  };
+
+  const search = () => {
+    console.log('k', k);
+    setKeyword(k);
+    console.log('keyword', keyword);
+  };
 
   useEffect(() => {
-    fetch('http://localhost:9595/board/list/' + pNum, {
+    fetch('http://localhost:9595' + link + pNum + '?keyword=' + keyword, {
       method: 'GET',
     })
       .then((res) => res.json())
@@ -19,7 +31,7 @@ const BoardList = (props) => {
         setBoards(res);
       });
 
-    fetch('http://localhost:9595/board/all', {
+    fetch('http://localhost:9595/board/all?keyword=' + keyword, {
       method: 'GET',
     })
       .then((res) => res.json())
@@ -30,7 +42,7 @@ const BoardList = (props) => {
             : parseInt(res.length / 10),
         );
       });
-  }, [pNum, boards, Link]);
+  }, [pNum, keyword]);
 
   return (
     <div className="container mt-2">
@@ -50,10 +62,22 @@ const BoardList = (props) => {
           ))}
         </tbody>
       </Table>
-      <div className="d-flex flex-row-reverse">
-        <Link to={'/board/write'} className="btn btn-secondary mb-1">
-          글쓰기
-        </Link>
+
+      <div className="d-flex justify-content-between">
+        <div></div>
+        <div className="d-flex justify-content-evenly ms-5">
+          <InputGroup className="mb-3">
+            <FormControl placeholder="검색어를 입력하세요." onChange={setKey} />
+            <Button variant="outline-secondary" onClick={search}>
+              검색
+            </Button>
+          </InputGroup>
+        </div>
+        <div>
+          <Link to={'/board/write'} className="btn btn-secondary mb-1">
+            글쓰기
+          </Link>
+        </div>
       </div>
       <Page pNum={pNum} totalPage={totalPage} link={link} />
     </div>

@@ -3,44 +3,69 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="study.janek.member.mapper.BoardMapper">
 
-	<insert id="insertBoard" parameterType="study.janek.member.model.Board">
-		INSERT INTO board (title, writer, content) 
+	<insert id="insertBoard"
+		parameterType="study.janek.member.model.Board">
+		INSERT INTO board (title, writer, content)
 		VALUES (#{title}, #{writer}, #{content})
 	</insert>
-	
-	<select id="getBoardAll" resultType="study.janek.member.model.Board">
-		SELECT 
-			*
+
+	<select id="getBoardAll"
+		resultType="study.janek.member.model.Board">
+		SELECT
+		*
 		FROM board
+		<if test="keyword != null and !(keyword eq '')">
+			WHERE (title LIKE '%${keyword}%' or content LIKE
+			'%${keyword}%')
+		</if>
 	</select>
-	
-	<select id="getBoardList" parameterType="int" resultType="study.janek.member.dto.BoardDto">
+
+	<select id="getBoardList" parameterType="int"
+		resultType="study.janek.member.dto.BoardDto">
 		SELECT a.id, a.title, b.username, a.writeDate, a.readCnt
-		FROM board a, user b WHERE a.writer = b.id
+		FROM board a,
+		user b WHERE a.writer = b.id
+		<if test="keyword != null and !(keyword eq '')">
+			AND (a.title LIKE '%${keyword}%' or a.content LIKE
+			'%${keyword}%')
+		</if>
 		ORDER BY a.writeDate DESC
 		LIMIT #{pageNum}, 10
 	</select>
-	
-	<select id="getBoardById"  resultType="study.janek.member.dto.BoardDto">
-		SELECT a.id, a.title, b.username, a.writeDate, a.content, a.readCnt 
-		FROM board a, user b 
+
+	<select id="getPostList" parameterType="Long"
+		resultType="study.janek.member.model.Board">
+		SELECT * FROM board
+		WHERE writer=#{userId}
+		ORDER BY writeDate
+		DESC
+	</select>
+
+	<select id="getBoardById"
+		resultType="study.janek.member.dto.BoardDto">
+		SELECT a.id, a.title, b.username, a.writeDate, a.content,
+		a.writer, a.readCnt
+		FROM board a, user b
 		WHERE a.writer = b.id AND a.id=#{id}
 	</select>
-	
+
 	<delete id="deleteBoardById" parameterType="Long">
-		DELETE FROM board WHERE id=#{id}
+		DELETE FROM board
+		WHERE id=#{id}
 	</delete>
-	
-	<update id="updateBoard" parameterType="study.janek.member.model.Board">
+
+	<update id="updateBoard"
+		parameterType="study.janek.member.model.Board">
 		UPDATE board set
 		title=#{title}, content=#{content}
-		WHERE id=#{id}
+		WHERE
+		id=#{id}
 	</update>
-	
+
 	<update id="updateReadCnt" parameterType="Long">
 		UPDATE board set
 		readCnt = (readCnt + 1)
 		WHERE id=#{id}
 	</update>
-	
+
 </mapper>

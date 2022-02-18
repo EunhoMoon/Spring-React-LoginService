@@ -11,6 +11,7 @@ const BoardDetail = (props) => {
     username: '',
     title: '',
     content: '',
+    writer: '',
     writeDate: '',
     readCnt: 0,
   });
@@ -82,7 +83,21 @@ const BoardDetail = (props) => {
           </tr>
           <tr className=" text-center">
             <th width="20%">작성자</th>
-            <td width="30%">{boardData.username}</td>
+            <td width="30%">
+              {sessionStorage.getItem('role') == 'ADMIN' ? (
+                <Link
+                  to={{
+                    pathname: '/user/detail/' + id,
+                    state: { pNum },
+                  }}
+                  className="linkText"
+                >
+                  {boardData.username}
+                </Link>
+              ) : (
+                boardData.username
+              )}
+            </td>
             <th width="20%">작성일</th>
             <td colSpan={3}>
               {boardData.writeDate.substring(0, 10) +

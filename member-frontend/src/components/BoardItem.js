@@ -3,7 +3,7 @@ import { Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const BoardItem = (props) => {
-  const { id, title, username, writeDate, readCnt, isNew } = props.board;
+  const { id, no, title, username, writeDate, readCnt, isNew } = props.board;
   const { pNum } = props;
   const newButton = (
     <Badge pill bg="success">
@@ -13,7 +13,7 @@ const BoardItem = (props) => {
 
   return (
     <tr className="align-middle text-center">
-      <td>{id}</td>
+      <td>{no}</td>
       <td>
         <Link
           to={{

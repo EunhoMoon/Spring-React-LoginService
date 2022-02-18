@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import study.janek.member.dto.BoardDto;
@@ -34,13 +35,19 @@ public class BoardRestController {
 	}
 
 	@GetMapping("/board/all")
-	public List<Board> getBoardAll() {
-		return boardService.getBoardAll();
+	public List<Board> getBoardAll(@RequestParam String keyword) {
+		return boardService.getBoardAll(keyword);
 	}
 
 	@GetMapping("/board/list/{pageNum}")
-	public List<BoardDto> getBoardList(@PathVariable("pageNum") int pageNum) {
-		return boardService.getBoardList(pageNum);
+	public List<BoardDto> getBoardList(@PathVariable("pageNum") int pageNum, @RequestParam String keyword) {
+		return boardService.getBoardList(pageNum, keyword);
+	}
+	
+	@CrossOrigin
+	@GetMapping("/board/post/{userId}")
+	public List<Board> getPostList(@PathVariable("userId") Long userId) {
+		return boardService.getPostList(userId);
 	}
 
 	@GetMapping("/board/detail/{id}")
