@@ -40,6 +40,31 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 }
 ```
 
+### DB 테이블 세팅
+
+```sql
+CREATE TABLE user (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(256) NOT NULL,
+  password VARCHAR(256) NOT NULL,
+  name VARCHAR(256) NOT NULL,
+  email VARCHAR(256),
+  role  VARCHAR(256) DEFAULT 'USER',
+  createDate DATETIME DEFAULT NOW(),
+  lastLogin DATETIME
+);
+
+CREATE TABLE board (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(256) NOT NULL,
+  content VARCHAR(256) NOT NULL,
+  writer INT,
+  writeDate DATETIME DEFAULT NOW(),
+  readCnt INT default 0,
+  FOREIGN KEY (writer) REFERENCES user (id)
+);
+```
+
 ### To Do List
 
 - JWT 토큰 및 암호화, 권한 설정
