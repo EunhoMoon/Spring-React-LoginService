@@ -22,4 +22,6 @@ public interface BoardMapper {
 	
 	int updateBoard(Board board);
 	
+	int updateReadCnt(Long id);
+	
 }

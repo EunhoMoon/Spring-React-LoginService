@@ -1,9 +1,15 @@
 import React from 'react';
+import { Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const BoardItem = (props) => {
-  const { id, title, content, username, writeDate } = props.board;
+  const { id, title, username, writeDate, readCnt, isNew } = props.board;
   const { pNum } = props;
+  const newButton = (
+    <Badge pill bg="success">
+      New
+    </Badge>
+  );
 
   return (
     <tr className="align-middle text-center">
@@ -16,11 +22,12 @@ const BoardItem = (props) => {
           }}
           className="linkText"
         >
-          {title}
+          {title}&nbsp;&nbsp;{isNew ? newButton : ''}
         </Link>
       </td>
       <td>{username}</td>
       <td>{writeDate.substr(0, 10)}</td>
+      <td>{readCnt}</td>
     </tr>
   );
 };

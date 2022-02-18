@@ -12,6 +12,7 @@ const BoardDetail = (props) => {
     title: '',
     content: '',
     writeDate: '',
+    readCnt: 0,
   });
 
   const onRemove = () => {
@@ -39,6 +40,7 @@ const BoardDetail = (props) => {
       .then((res) => {
         setBoardData(res);
       });
+    console.log('boardData', boardData);
   }, []);
 
   return (
@@ -74,13 +76,15 @@ const BoardDetail = (props) => {
         <thead>
           <tr className=" text-center">
             <th>제목</th>
-            <td colSpan={3}>{boardData.title}</td>
+            <td colSpan={2}>{boardData.title}</td>
+            <td width={'15%'}>조회수</td>
+            <td width={'15%'}>{boardData.readCnt}</td>
           </tr>
           <tr className=" text-center">
             <th width="20%">작성자</th>
             <td width="30%">{boardData.username}</td>
             <th width="20%">작성일</th>
-            <td width="30%">
+            <td colSpan={3}>
               {boardData.writeDate.substring(0, 10) +
                 ' ' +
                 boardData.writeDate.substring(11, 16)}
@@ -89,12 +93,12 @@ const BoardDetail = (props) => {
         </thead>
         <thead>
           <tr className=" text-center">
-            <th colSpan={4}>내용</th>
+            <th colSpan={6}>내용</th>
           </tr>
           <tr>
             <td
               className="p-5"
-              colSpan={4}
+              colSpan={6}
               dangerouslySetInnerHTML={{ __html: boardData.content }}
             ></td>
           </tr>

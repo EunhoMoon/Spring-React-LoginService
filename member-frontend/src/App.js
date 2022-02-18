@@ -48,7 +48,6 @@ function App() {
       <Route path={'/board/write'} exact={true} component={BoardWrite} />
       <Route path={'/board/update'} exact={true} component={BoardUpdate} />
       <Route path={'/board/detail/:id'} exact={true} component={BoardDetail} />
-      <Route path={'/success'} exact={true} component={Success} />{' '}
     </div>
   );
 }

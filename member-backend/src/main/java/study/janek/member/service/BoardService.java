@@ -1,5 +1,8 @@
 package study.janek.member.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +35,30 @@ public class BoardService {
 	
 	public List<BoardDto> getBoardList(int pageNum) {
 		pageNum = (pageNum - 1) * 10;
-		return boardMapper.getBoardList(pageNum);
+		List<BoardDto> boardList = boardMapper.getBoardList(pageNum);
+		String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+		for (BoardDto boardDto : boardList) {
+			if (boardDto.getTitle().length() > 12) {
+				boardDto.setTitle(boardDto.getTitle().substring(0, 12) + "...");
+			}
+			if (boardDto.getWriteDate().substring(0, 10).equals(today)) {
+				boardDto.setIsNew(true);
+			}
+		}
+		
+		return boardList;
 	}
 	
 	public BoardDto getBoardById(Long id) {
-		return boardMapper.getBoardById(id);
+		BoardDto boardDto = boardMapper.getBoardById(id);
+		
+		if (boardDto != null) {
+			boardMapper.updateReadCnt(boardDto.getId());
+			boardDto.setReadCnt(boardDto.getReadCnt() + 1);
+		}
+		
+		return boardDto;
 	}
 	
 	public int deleteBoardById(Long id) {

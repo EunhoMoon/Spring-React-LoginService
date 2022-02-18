@@ -15,14 +15,14 @@
 	</select>
 	
 	<select id="getBoardList" parameterType="int" resultType="study.janek.member.dto.BoardDto">
-		SELECT a.id, a.title, b.username, a.writeDate  
+		SELECT a.id, a.title, b.username, a.writeDate, a.readCnt
 		FROM board a, user b WHERE a.writer = b.id
 		ORDER BY a.writeDate DESC
 		LIMIT #{pageNum}, 10
 	</select>
 	
 	<select id="getBoardById"  resultType="study.janek.member.dto.BoardDto">
-		SELECT a.id, a.title, b.username, a.writeDate, a.content  
+		SELECT a.id, a.title, b.username, a.writeDate, a.content, a.readCnt 
 		FROM board a, user b 
 		WHERE a.writer = b.id AND a.id=#{id}
 	</select>
@@ -34,6 +34,12 @@
 	<update id="updateBoard" parameterType="study.janek.member.model.Board">
 		UPDATE board set
 		title=#{title}, content=#{content}
+		WHERE id=#{id}
+	</update>
+	
+	<update id="updateReadCnt" parameterType="Long">
+		UPDATE board set
+		readCnt = (readCnt + 1)
 		WHERE id=#{id}
 	</update>
 	

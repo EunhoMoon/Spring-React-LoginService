@@ -39,8 +39,9 @@ const BoardList = (props) => {
           <tr className="text-center">
             <th width="10%">no</th>
             <th width="40%">Title</th>
-            <th width="20%">Writer</th>
+            <th width="17%">Writer</th>
             <th width="*">Upload Date</th>
+            <th width="13%">Views</th>
           </tr>
         </thead>
         <tbody>
