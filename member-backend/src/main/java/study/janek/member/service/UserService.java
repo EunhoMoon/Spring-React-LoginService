@@ -62,7 +62,14 @@ public class UserService {
 	}
 	
 	public User loginProc(User userDto) {
-		return userMapper.loginProc(userDto);
+		User user;
+		if (userMapper.isR(userDto) > 0) {
+			user = userMapper.loginProc(userDto);
+		} else {
+			user = null;
+			user.setUsername("not");
+		}
+		return user;
 	}
 	
 }

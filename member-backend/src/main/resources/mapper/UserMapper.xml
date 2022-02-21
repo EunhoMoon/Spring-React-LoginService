@@ -48,4 +48,11 @@
 		FROM user
 		WHERE username=#{username} and password=#{password}
 	</select>
+	
+	<select id="isR" parameterType="study.janek.member.model.User" resultType="int">
+		SELECT
+		COUNT(username)
+		FROM user
+		WHERE username=#{username} and password=#{password}
+	</select>
 </mapper>

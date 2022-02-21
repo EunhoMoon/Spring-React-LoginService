@@ -23,4 +23,6 @@ public interface UserMapper {
 	void updateLastLogin(User user);
 	
 	User loginProc(User user);
+	
+	int isR(User user);
 }

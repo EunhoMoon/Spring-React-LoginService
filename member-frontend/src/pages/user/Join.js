@@ -40,6 +40,7 @@ const Join = (props) => {
       .then((res) => {
         if (res === user.username) {
           alert('현재 사용중인 아이디 입니다.');
+          setIsDup(true);
         } else {
           alert('사용 가능한 아이디 입니다.');
           setIsDup(false);

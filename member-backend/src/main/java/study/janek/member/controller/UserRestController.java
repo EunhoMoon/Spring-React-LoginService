@@ -51,17 +51,16 @@ public class UserRestController {
 	}
 
 	@PostMapping("/loginProc")
-	public User loginProc(@RequestBody User user) {
+	public User loginProc(@RequestBody User user) throws Exception {
 		User userDto = new User();
 		userDto.setUsername(user.getUsername());
 		userDto.setPassword(user.getPassword());
 
 		User userLogin = userService.loginProc(userDto);
-
-		if (userLogin != null) {
+		
+		if (userLogin.getUsername() != null) {
 			userService.updateLastLogin(userLogin);
-		}
-
+		} 
 		return userLogin;
 	}
 

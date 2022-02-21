@@ -26,6 +26,7 @@ const Login = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
+        console.log(res);
         if (res != null) {
           alert(res.name + '님 환영합니다');
           sessionStorage.setItem('username', res.username);

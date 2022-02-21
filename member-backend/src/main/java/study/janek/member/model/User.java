@@ -83,4 +83,5 @@ public class User {
 				+ ", role=" + role + ", createDate=" + createDate + ", lastLogin=" + lastLogin + "]";
 	}
 
+
 }
