@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
 <mapper namespace="study.janek.member.mapper.BoardMapper">
 
 	<insert id="insertBoard"
@@ -10,7 +11,7 @@
 	</insert>
 
 	<select id="getBoardAll"
-		resultType="study.janek.member.model.Board">
+		resultType="Board">
 		SELECT
 		*
 		FROM board
@@ -21,7 +22,7 @@
 	</select>
 
 	<select id="getBoardList" parameterType="int"
-		resultType="study.janek.member.dto.BoardDto">
+		resultType="BoardDto">
 		SELECT a.id, a.title, b.username, a.writeDate, a.readCnt
 		FROM board a,
 		user b WHERE a.writer = b.id
@@ -34,7 +35,7 @@
 	</select>
 
 	<select id="getPostList" parameterType="Long"
-		resultType="study.janek.member.model.Board">
+		resultType="Board">
 		SELECT * FROM board
 		WHERE writer=#{userId}
 		ORDER BY writeDate
@@ -42,7 +43,7 @@
 	</select>
 
 	<select id="getBoardById"
-		resultType="study.janek.member.dto.BoardDto">
+		resultType="BoardDto">
 		SELECT a.id, a.title, b.username, a.writeDate, a.content,
 		a.writer, a.readCnt
 		FROM board a, user b
@@ -55,7 +56,7 @@
 	</delete>
 
 	<update id="updateBoard"
-		parameterType="study.janek.member.model.Board">
+		parameterType="Board">
 		UPDATE board set
 		title=#{title}, content=#{content}
 		WHERE
@@ -69,3 +70,4 @@
 	</update>
 
 </mapper>
+
