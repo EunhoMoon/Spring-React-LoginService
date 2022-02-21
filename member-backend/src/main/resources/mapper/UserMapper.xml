@@ -49,7 +49,7 @@
 		WHERE username=#{username} and password=#{password}
 	</select>
 	
-	<select id="isR" parameterType="study.janek.member.model.User" resultType="int">
+	<select id="isMem" parameterType="study.janek.member.model.User" resultType="int">
 		SELECT
 		COUNT(username)
 		FROM user

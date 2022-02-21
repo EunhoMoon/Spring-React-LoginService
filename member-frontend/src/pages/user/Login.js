@@ -17,22 +17,36 @@ const Login = (props) => {
 
   const submitLogin = (e) => {
     e.preventDefault();
-    fetch('http://localhost:9595/loginProc', {
+    fetch('http://localhost:9595/user/isMem', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify(user),
     })
-      .then((res) => res.json())
+      .then((res) => res.text())
       .then((res) => {
-        console.log(res);
-        if (res != null) {
-          alert(res.name + '님 환영합니다');
-          sessionStorage.setItem('username', res.username);
-          sessionStorage.setItem('id', res.id);
-          sessionStorage.setItem('role', res.role);
-          window.location.replace('/');
+        if (res == 1) {
+          fetch('http://localhost:9595/loginProc', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json; charset=utf-8',
+            },
+            body: JSON.stringify(user),
+          })
+            .then((res) => res.json())
+            .then((res) => {
+              console.log(res);
+              if (res != null) {
+                alert(res.name + '님 환영합니다');
+                sessionStorage.setItem('username', res.username);
+                sessionStorage.setItem('id', res.id);
+                sessionStorage.setItem('role', res.role);
+                window.location.replace('/');
+              } else {
+                alert('로그인 실패. 잠시 후 다시 시도해보세요.');
+              }
+            });
         } else {
           alert('로그인 실패. 아이디와 비밀번호를 확인하세요.');
         }

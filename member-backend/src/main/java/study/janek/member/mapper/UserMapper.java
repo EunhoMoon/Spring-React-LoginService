@@ -24,5 +24,5 @@ public interface UserMapper {
 	
 	User loginProc(User user);
 	
-	int isR(User user);
+	int isMem(User user);
 }

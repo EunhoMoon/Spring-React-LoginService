@@ -52,16 +52,12 @@ public class UserRestController {
 
 	@PostMapping("/loginProc")
 	public User loginProc(@RequestBody User user) throws Exception {
-		User userDto = new User();
-		userDto.setUsername(user.getUsername());
-		userDto.setPassword(user.getPassword());
+		return userService.loginProc(user);
+	}
 
-		User userLogin = userService.loginProc(userDto);
-		
-		if (userLogin.getUsername() != null) {
-			userService.updateLastLogin(userLogin);
-		} 
-		return userLogin;
+	@PostMapping("/user/isMem")
+	public int isMem(@RequestBody User user) {
+		return userService.isMem(user);
 	}
 
 }

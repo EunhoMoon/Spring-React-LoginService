@@ -61,15 +61,17 @@ public class UserService {
 		userMapper.updateLastLogin(user);
 	}
 	
-	public User loginProc(User userDto) {
-		User user;
-		if (userMapper.isR(userDto) > 0) {
-			user = userMapper.loginProc(userDto);
-		} else {
-			user = null;
-			user.setUsername("not");
+	public User loginProc(User user) {
+		User userEntity = userMapper.loginProc(user);
+		if (userEntity != null) {
+			userMapper.updateLastLogin(userEntity);
 		}
-		return user;
+
+		return userEntity;
+	}
+
+	public int isMem(User user) {
+		return userMapper.isMem(user);
 	}
 	
 }
