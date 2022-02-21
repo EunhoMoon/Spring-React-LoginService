@@ -3,9 +3,11 @@
 ### Springboot
 
 - Springboot ^2.0
+- Maven
 - MyBatis
 - MySQL/MariaDB
-- Maven
+- logback
+- log4jdbc
 <!--
 - Security
 - OAuth2
