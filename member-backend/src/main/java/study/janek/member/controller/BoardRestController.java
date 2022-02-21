@@ -44,7 +44,6 @@ public class BoardRestController {
 		return boardService.getBoardList(pageNum, keyword);
 	}
 	
-	@CrossOrigin
 	@GetMapping("/board/post/{userId}")
 	public List<Board> getPostList(@PathVariable("userId") Long userId) {
 		return boardService.getPostList(userId);

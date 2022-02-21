@@ -49,7 +49,6 @@ public class UserRestController {
 
 		if (userEntity == null)
 			userEntity.setUsername("없음");
-		System.out.println(userEntity.getUsername());
 
 		return userEntity;
 	}

@@ -33,8 +33,6 @@ const BoardWrite = (props) => {
     e.preventDefault();
     if (isTitleEmpty) {
       alert('제목을 입력하세요.');
-    } else if (isTitleEmpty) {
-      alert('내용을 입력하세요.');
     } else {
       fetch('http://localhost:9595/board/write', {
         method: 'POST',
@@ -50,7 +48,7 @@ const BoardWrite = (props) => {
             alert('게시글 작성에 성공하였습니다.');
             props.history.push('/board/list/1');
           } else {
-            alert('게시글 작성에 실패하였습니다.');
+            alert('게시글 작성에 실패하였습니다. 내용을 확인하세요.');
           }
         });
     }
