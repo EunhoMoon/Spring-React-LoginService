@@ -35,11 +35,10 @@ const Join = (props) => {
 
   // 아이디 중복 검사
   const chekId = (e) => {
-    console.log(user.username);
     fetch('http://localhost:9595/user/name/' + user.username)
-      .then((res) => res.json())
+      .then((res) => res.text())
       .then((res) => {
-        if (res.username === user.username) {
+        if (res === user.username) {
           alert('현재 사용중인 아이디 입니다.');
         } else {
           alert('사용 가능한 아이디 입니다.');
@@ -72,7 +71,7 @@ const Join = (props) => {
   // 회원 가입 함수
   const submitJoin = (e) => {
     e.preventDefault();
-    if (isDup || !checkPassword) {
+    if (isDup || !checkPassword || user.name === '' || user.name === null) {
       alert('입력된 정보를 확인하세요.');
     } else {
       fetch('http://localhost:9595/join', {
@@ -84,7 +83,6 @@ const Join = (props) => {
       })
         .then((res) => res.text())
         .then((res) => {
-          console.log(res);
           if (res == 1) {
             alert('회원 가입에 성공하였습니다.');
             window.location.replace('/login');

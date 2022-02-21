@@ -58,6 +58,7 @@ const Login = (props) => {
             type="password"
             name="password"
             placeholder="비밀번호를 입력하세요."
+            autoComplete="on"
             onChange={changeValue}
           />
         </Form.Group>

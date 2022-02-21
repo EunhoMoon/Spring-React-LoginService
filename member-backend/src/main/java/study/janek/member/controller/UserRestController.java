@@ -44,13 +44,10 @@ public class UserRestController {
 	}
 
 	@GetMapping("/user/name/{username}")
-	public User findByUsername(@PathVariable("username") String username) throws Exception {
+	public String findByUsername(@PathVariable("username") String username) throws Exception {
 		User userEntity = userService.findByUsername(username);
 
-		if (userEntity == null)
-			userEntity.setUsername("없음");
-
-		return userEntity;
+		return userEntity.getUsername();
 	}
 
 	@PostMapping("/loginProc")
