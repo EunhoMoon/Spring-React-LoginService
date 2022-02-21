@@ -7,6 +7,9 @@ const BoardWrite = (props) => {
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
 
+  const [isTitleEmpty, setIsTitleEmpty] = useState(true);
+  const [isContentEmpty, setIsContentEmpty] = useState(true);
+
   const [board, setBoard] = useState({
     title: '',
     writer: sessionStorage.getItem('id'),
@@ -15,7 +18,7 @@ const BoardWrite = (props) => {
 
   const changeValue = (e) => {
     setTitle(e.target.value);
-    console.log(title);
+    setIsTitleEmpty(false);
   };
 
   useEffect(() => {
@@ -28,23 +31,29 @@ const BoardWrite = (props) => {
 
   const submitWrite = (e) => {
     e.preventDefault();
-    fetch('http://localhost:9595/board/write', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify(board),
-    })
-      .then((res) => res.text())
-      .then((res) => {
-        console.log(res);
-        if (res == 1) {
-          alert('게시글 작성에 성공하였습니다.');
-          props.history.push('/board/list/1');
-        } else {
-          alert('게시글 작성에 실패하였습니다.');
-        }
-      });
+    if (isTitleEmpty) {
+      alert('제목을 입력하세요.');
+    } else if (isTitleEmpty) {
+      alert('내용을 입력하세요.');
+    } else {
+      fetch('http://localhost:9595/board/write', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(board),
+      })
+        .then((res) => res.text())
+        .then((res) => {
+          console.log(res);
+          if (res == 1) {
+            alert('게시글 작성에 성공하였습니다.');
+            props.history.push('/board/list/1');
+          } else {
+            alert('게시글 작성에 실패하였습니다.');
+          }
+        });
+    }
   };
 
   return (
@@ -58,7 +67,12 @@ const BoardWrite = (props) => {
             onChange={changeValue}
           />
         </Form.Group>
-        <WriteForm setContent={setContent} content={''} className="mb-0" />
+        <WriteForm
+          setContent={setContent}
+          setIsContentEmpty={setIsContentEmpty}
+          content={''}
+          className="mb-0"
+        />
         <div className="d-flex flex-row-reverse mt-0">
           <Button
             type="submit"

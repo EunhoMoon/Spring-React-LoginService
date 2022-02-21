@@ -60,3 +60,13 @@ ul.pagination li a.active {
   font-size: 1.1em;
   font-weight: bold;
 }
+
+.isN {
+  color: red;
+  font-size: small;
+}
+
+.isY {
+  color: blue;
+  font-size: small;
+}

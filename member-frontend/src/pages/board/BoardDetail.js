@@ -6,6 +6,8 @@ const BoardDetail = (props) => {
   const id = props.match.params.id; // 현재 페이지 번호
   const pNum = useLocation().state.pNum; // location을 사용하기 위해 선언
 
+  console.log(id);
+
   const [boardData, setBoardData] = useState({
     id: '',
     username: '',
@@ -87,7 +89,7 @@ const BoardDetail = (props) => {
               {sessionStorage.getItem('role') == 'ADMIN' ? (
                 <Link
                   to={{
-                    pathname: '/user/detail/' + id,
+                    pathname: '/user/detail/' + boardData.writer,
                     state: { pNum },
                   }}
                   className="linkText"

@@ -15,14 +15,25 @@ const Join = (props) => {
     e2: '',
   });
 
+  const [isDup, setIsDup] = useState(true);
+  const [checkPassword, setCheckPassword] = useState(false);
+
   const changeValue = (e) => {
     setuser({
       ...user,
       [e.target.name]: e.target.value,
     });
-    console.log('i : ' + user.username);
   };
 
+  const checkPasswordValue = (e) => {
+    if (e.target.value == user.password) {
+      setCheckPassword(true);
+    } else {
+      setCheckPassword(false);
+    }
+  };
+
+  // 아이디 중복 검사
   const chekId = (e) => {
     console.log(user.username);
     fetch('http://localhost:9595/user/name/' + user.username)
@@ -32,10 +43,12 @@ const Join = (props) => {
           alert('현재 사용중인 아이디 입니다.');
         } else {
           alert('사용 가능한 아이디 입니다.');
+          setIsDup(false);
         }
       });
   };
 
+  // 입력된 회원 정보 저장
   useEffect(() => {
     setuser({
       ...user,
@@ -43,6 +56,7 @@ const Join = (props) => {
     });
   }, [email.e1, email.e2, user.email]);
 
+  // 입력 받은 이메일 데이터 저장
   const mailValue = (e) => {
     setEmail({
       ...email,
@@ -55,31 +69,36 @@ const Join = (props) => {
     });
   };
 
+  // 회원 가입 함수
   const submitJoin = (e) => {
     e.preventDefault();
-    fetch('http://localhost:9595/join', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.text())
-      .then((res) => {
-        console.log(res);
-        if (res == 1) {
-          alert('회원 가입에 성공하였습니다.');
-          window.location.replace('/login');
-        } else {
-          alert('회원 가입에 실패하였습니다.');
-        }
-      });
+    if (isDup || !checkPassword) {
+      alert('입력된 정보를 확인하세요.');
+    } else {
+      fetch('http://localhost:9595/join', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.text())
+        .then((res) => {
+          console.log(res);
+          if (res == 1) {
+            alert('회원 가입에 성공하였습니다.');
+            window.location.replace('/login');
+          } else {
+            alert('회원 가입에 실패하였습니다.');
+          }
+        });
+    }
   };
 
   return (
     <div className="container">
       <Form onSubmit={submitJoin}>
-        <Form.Group className="mb-3 mt-3 col-xs-4">
+        <Form.Group className="mb-1 mt-3 col-xs-4">
           <label>ID</label>
           <div className="input-group mt-2">
             <input
@@ -99,6 +118,13 @@ const Join = (props) => {
             </button>
           </div>
         </Form.Group>
+        <div className="mb-3 p-1">
+          {!isDup ? (
+            <span className="isY">사용 가능한 아이디입니다.</span>
+          ) : (
+            <span className="isN">아이디 중복검사를 해주세요.</span>
+          )}
+        </div>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
@@ -109,6 +135,21 @@ const Join = (props) => {
             placeholder="비밀번호를 입력하세요."
           />
         </Form.Group>
+        <Form.Group className="mb-1">
+          <Form.Label>Repeat Password</Form.Label>
+          <Form.Control
+            type="password"
+            onChange={checkPasswordValue}
+            placeholder="비밀번호를 다시 입력하세요."
+          />
+        </Form.Group>
+        <div className="mb-3 p-1">
+          {checkPassword ? (
+            <span className="isY">비밀번호가 일치합니다.</span>
+          ) : (
+            <span className="isN">비밀번호가 일치하지 않습니다.</span>
+          )}
+        </div>
 
         <Form.Group className="mb-3" controlId="text">
           <Form.Label>Name</Form.Label>

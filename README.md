@@ -65,9 +65,7 @@ CREATE TABLE board (
 );
 ```
 
-### To Do List
+### To Do Lists
 
 - JWT 토큰 및 암호화, 권한 설정
-- 회원가입 validation chek
-- Server Log 설정
-- 게시판, 유저 정보 오류 수정
+- 관리자 통계 페이지 구현
