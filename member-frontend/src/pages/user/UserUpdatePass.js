@@ -38,25 +38,29 @@ const UserUpdatePass = () => {
       .then((res) => res.text())
       .then((res) => {
         if (res == 1) {
-          fetch('http://localhost:9595/user/updatePassword', {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json; charset=utf-8',
-            },
-            body: JSON.stringify({
-              id: sessionStorage.getItem('id'),
-              password: newPass,
-            }),
-          })
-            .then((result) => result.text())
-            .then((result) => {
-              if (result == 1) {
-                alert('비밀번호가 변경되었습니다.');
-                window.location.replace('/user/myInfo');
-              } else {
-                alert('비밀번호 변경에 실패하였습니다.');
-              }
-            });
+          if (checkPass) {
+            fetch('http://localhost:9595/user/updatePassword', {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+              },
+              body: JSON.stringify({
+                id: sessionStorage.getItem('id'),
+                password: newPass,
+              }),
+            })
+              .then((result) => result.text())
+              .then((result) => {
+                if (result == 1) {
+                  alert('비밀번호가 변경되었습니다.');
+                  window.location.replace('/user/myInfo');
+                } else {
+                  alert('비밀번호 변경에 실패하였습니다.');
+                }
+              });
+          } else {
+            alert('비밀번호 확인 값이 다릅니다.');
+          }
         } else {
           alert('기존 비밀번호를 확인하세요.');
         }

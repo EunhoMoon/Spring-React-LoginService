@@ -19,12 +19,20 @@ const UserUpdate = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
-        setUser(res);
+        if (res.email !== null) {
+          setUser(res);
+        } else {
+          setUser({
+            ...res,
+            email: ' @ ',
+          });
+        }
+        console.log(res);
       });
   }, []);
 
   useEffect(() => {
-    if (user.email != null || user.email != '') {
+    if (user.email !== null || user.email !== '') {
       let emails = user.email.split('@');
       setEmail({ e1: emails[0], e2: emails[1] });
     }
@@ -99,7 +107,8 @@ const UserUpdate = (props) => {
             <Form.Control
               type="text"
               name="e1"
-              defaultValue={email.e1}
+              defaultValue={email.e1 !== ' ' ? email.e1 : ''}
+              placeholder={'이메일을 입력하세요.'}
               onChange={mailValue}
             />
           </Form.Group>
