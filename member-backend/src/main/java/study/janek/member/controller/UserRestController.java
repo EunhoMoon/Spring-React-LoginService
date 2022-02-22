@@ -65,5 +65,10 @@ public class UserRestController {
 	public int updateUserInfo(@RequestBody User user) {
 		return userService.updateUserInfo(user);
 	}
+	
+	@PutMapping("/user/updatePassword")
+	public int updatePassword(@RequestBody User user) {
+		return userService.updatePassword(user);
+	}
 
 }

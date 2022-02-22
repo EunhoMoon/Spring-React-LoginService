@@ -61,4 +61,10 @@
 		email=#{email}
 		WHERE id=#{id}
 	</update>
+	
+	<update id="updatePassword" parameterType="study.janek.member.model.User">
+		UPDATE user SET
+		password=#{password}
+		WHERE id=#{id}
+	</update>
 </mapper>

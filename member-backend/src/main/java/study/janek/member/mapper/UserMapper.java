@@ -27,4 +27,6 @@ public interface UserMapper {
 	int isMem(User user);
 	
 	int updateUserInfo(User user);
+	
+	int updatePassword(User user);
 }

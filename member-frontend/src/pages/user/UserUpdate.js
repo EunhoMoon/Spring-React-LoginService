@@ -73,7 +73,6 @@ const UserUpdate = (props) => {
 
   return (
     <div className="container mt-2">
-      <h1>개인 정보 수정</h1>
       <Form onSubmit={submitUpdate}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>ID</Form.Label>
@@ -94,18 +93,7 @@ const UserUpdate = (props) => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            placeholder="비밀번호를 입력하세요."
-            autoComplete="off"
-            onChange={checkValue}
-          />
-        </Form.Group>
-
-        <Row>
+        <Row className="mb-3">
           <Form.Group as={Col} md="4" controlId="validationCustom02">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -133,16 +121,22 @@ const UserUpdate = (props) => {
             </InputGroup>
           </Form.Group>
         </Row>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="비밀번호를 입력하세요."
+            autoComplete="off"
+            onChange={checkValue}
+          />
+        </Form.Group>
         <div className="mt-3">
           <Button variant="primary" type="submit" className="m-1">
             수정
           </Button>
-
-          <Link
-            to={'/user/myInfo'}
-            type="submit"
-            className="btn btn-primary m-1"
-          >
+          <Link to={'/user/myInfo'} className="btn btn-primary m-1">
             취소
           </Link>
         </div>

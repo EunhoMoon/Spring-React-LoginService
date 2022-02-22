@@ -37,6 +37,10 @@ const MyInfo = () => {
   return (
     <div className="w-75 p-2 container">
       <div className="d-flex flex-row-reverse mb-1">
+        <Link to={'/user/updatePass'} className="btn btn-secondary mb-1">
+          비밀번호 변경
+        </Link>
+        &nbsp;
         <Link to={'/user/updateForm'} className="btn btn-secondary mb-1">
           정보 수정
         </Link>

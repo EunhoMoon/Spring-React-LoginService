@@ -77,4 +77,8 @@ public class UserService {
 	public int updateUserInfo(User user) {
 		return userMapper.updateUserInfo(user);
 	}
+	
+	public int updatePassword(User user) {
+		return userMapper.updatePassword(user);
+	}
 }
