@@ -14,6 +14,8 @@ import Logout from './pages/user/Logout';
 import BoardWrite from './pages/board/BoardWrite';
 import { createGlobalStyle } from 'styled-components';
 import BoardUpdate from './pages/board/BoardUpdate';
+import MyInfo from './pages/user/MyInfo';
+import UserUpdate from './pages/user/UserUpdate';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -43,6 +45,8 @@ function App() {
       <Route path={'/login'} exact={true} component={Login} />
       <Route path={'/logout'} exact={true} component={Logout} />
       <Route path={'/user/list/:pNum'} exact={true} component={UserList} />
+      <Route path={'/user/myInfo'} exact={true} component={MyInfo} />
+      <Route path={'/user/updateForm'} exact={true} component={UserUpdate} />
       <Route path={'/user/detail/:id'} exact={true} component={UserDetail} />
       <Route path={'/board/list/:pNum'} exact={true} component={BoardList} />
       <Route path={'/board/write'} exact={true} component={BoardWrite} />

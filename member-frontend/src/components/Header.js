@@ -26,6 +26,17 @@ const Header = ({ isLogin, isAdmin }) => {
               Login
             </Link>
           )}
+          {!isAdmin && isLogin ? (
+            <Link className="nav-link" to="/user/myInfo">
+              My Info
+            </Link>
+          ) : isAdmin ? (
+            <Link className="nav-link" to="/user/list/1">
+              Member
+            </Link>
+          ) : (
+            ''
+          )}
           {isLogin ? (
             <Link className="nav-link" to="/board/list/1">
               Board
@@ -34,13 +45,6 @@ const Header = ({ isLogin, isAdmin }) => {
             <Link className="nav-link" to="/join">
               Join
             </Link>
-          )}
-          {isAdmin ? (
-            <Link className="nav-link" to="/user/list/1">
-              Member
-            </Link>
-          ) : (
-            ''
           )}
         </Nav>
       </Container>

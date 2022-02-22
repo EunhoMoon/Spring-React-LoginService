@@ -47,15 +47,6 @@ const Join = (props) => {
         }
       });
   };
-
-  // 입력된 회원 정보 저장
-  useEffect(() => {
-    setuser({
-      ...user,
-      email: email.e1 + email.e2,
-    });
-  }, [email.e1, email.e2, user.email]);
-
   // 입력 받은 이메일 데이터 저장
   const mailValue = (e) => {
     setEmail({
@@ -68,6 +59,14 @@ const Join = (props) => {
       email: email.e1 + email.e2,
     });
   };
+
+  // 입력된 회원 정보 저장
+  useEffect(() => {
+    setuser({
+      ...user,
+      email: email.e1 + email.e2,
+    });
+  }, [email.e1, email.e2, user.email]);
 
   // 회원 가입 함수
   const submitJoin = (e) => {

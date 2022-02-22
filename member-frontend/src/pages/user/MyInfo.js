@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom'; // Link to 를 이용해 param을 받기 위해 사용
 
-const UserDetail = (props) => {
-  const pNum = useLocation().state.pNum; // location을 사용하기 위해 선언
-  const id = props.match.params.id;
+const MyInfo = () => {
+  const id = sessionStorage.getItem('id');
   const [posts, setPosts] = useState({ id: '', title: '', writeDate: '' });
-  // const pNum = location.state.pNum;
+  const pNum = 1;
 
   const [user, setUser] = useState({
     id: '',
@@ -36,16 +34,15 @@ const UserDetail = (props) => {
         setPosts(res);
       });
   }, []);
-
   return (
     <div className="w-75 p-2 container">
       <div className="d-flex flex-row-reverse mb-1">
-        <Link to={'/user/list/' + pNum} className="btn btn-secondary mb-1">
-          목록으로
+        <Link to={'/user/updateForm'} className="btn btn-secondary mb-1">
+          정보 수정
         </Link>
       </div>
       <Table striped bordered hover variant="dark">
-        <tbody>
+        <thead>
           <tr>
             <th>ID</th>
             <td>{user.username}</td>
@@ -57,24 +54,10 @@ const UserDetail = (props) => {
             <td>
               {user.email != null && user.email !== '' ? user.email : '-'}
             </td>
-            <th>Role</th>
-            <td>{user.role === 'USER' ? 'User' : 'Admin'}</td>
-          </tr>
-          <tr>
             <th>Join</th>
-            <td colSpan={3}>{user.createDate.substr(0, 10)}</td>
+            <td>{user.createDate.substr(0, 10)}</td>
           </tr>
-          <tr>
-            <th>Last Login</th>
-            <td colSpan={3}>
-              {user.lastLogin != null
-                ? user.lastLogin.substr(0, 10) +
-                  ' ' +
-                  user.lastLogin.substr(11, 5)
-                : '-'}
-            </td>
-          </tr>
-        </tbody>
+        </thead>
         <tbody>
           <tr align="center">
             <th colSpan={3}>Post</th>
@@ -105,4 +88,4 @@ const UserDetail = (props) => {
   );
 };
 
-export default UserDetail;
+export default MyInfo;

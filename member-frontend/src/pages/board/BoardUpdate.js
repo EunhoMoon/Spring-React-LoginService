@@ -64,6 +64,7 @@ const BoardUpdate = (props) => {
           </Form.Group>
           <WriteForm
             setContent={setContent}
+            setIsContentEmpty={false}
             content={boardData.content}
             className="mb-0"
           />

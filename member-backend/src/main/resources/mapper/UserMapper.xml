@@ -55,4 +55,10 @@
 		FROM user
 		WHERE username=#{username} and password=#{password}
 	</select>
+	
+	<update id="updateUserInfo" parameterType="study.janek.member.model.User">
+		UPDATE user SET
+		email=#{email}
+		WHERE id=#{id}
+	</update>
 </mapper>

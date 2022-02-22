@@ -5,7 +5,7 @@ import WriteForm from '../../components/WriteForm';
 
 const BoardWrite = (props) => {
   const [title, setTitle] = useState();
-  const [content, setContent] = useState();
+  const [content, setContent] = useState({});
 
   const [isTitleEmpty, setIsTitleEmpty] = useState(true);
   const [isContentEmpty, setIsContentEmpty] = useState(true);

@@ -74,4 +74,7 @@ public class UserService {
 		return userMapper.isMem(user);
 	}
 	
+	public int updateUserInfo(User user) {
+		return userMapper.updateUserInfo(user);
+	}
 }

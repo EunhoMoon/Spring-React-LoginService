@@ -54,8 +54,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className="container">
-      <br />
+    <div className="container mt-2">
       <Form onSubmit={submitLogin}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>ID</Form.Label>
