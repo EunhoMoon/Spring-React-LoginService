@@ -80,25 +80,29 @@ const UserDetail = (props) => {
             <th colSpan={3}>Post</th>
             <th>Post Date</th>
           </tr>
-          {posts.length > 0
-            ? posts.map((post) => (
-                <tr key={post.id}>
-                  <td colSpan={3}>
-                    {' '}
-                    <Link
-                      to={{
-                        pathname: '/board/detail/' + id,
-                        state: { pNum },
-                      }}
-                      className="linkText"
-                    >
-                      {post.title}
-                    </Link>
-                  </td>
-                  <td align="center">{post.writeDate.substr(0, 10)}</td>
-                </tr>
-              ))
-            : ''}
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <tr key={post.id}>
+                <td colSpan={3}>
+                  {' '}
+                  <Link
+                    to={{
+                      pathname: '/board/detail/' + id,
+                      state: { pNum },
+                    }}
+                    className="linkText"
+                  >
+                    {post.title}
+                  </Link>
+                </td>
+                <td align="center">{post.writeDate.substr(0, 10)}</td>
+              </tr>
+            ))
+          ) : (
+            <tr align="center">
+              <td colSpan={4}>아직 작성한 게시글이 없습니다.</td>
+            </tr>
+          )}
         </tbody>
       </Table>
     </div>

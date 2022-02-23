@@ -14,7 +14,6 @@ const Reply = ({ boardId }) => {
 
   const openModal = (e) => {
     setReplyId(e.target.value);
-    console.log('1', replyId);
     setModalOpen(true);
   };
   const closeModal = () => {
@@ -29,7 +28,6 @@ const Reply = ({ boardId }) => {
       .then((resList) => {
         setReplyDatas(resList);
       });
-    console.log(replyDatas);
   }, [boardId]);
 
   const deleteReply = (e) => {
@@ -130,7 +128,6 @@ const Reply = ({ boardId }) => {
                       <Form.Select
                         onChange={(e) => {
                           setReplyId(replyId);
-                          console.log('2', replyId);
                           setReportContent(e.target.value);
                         }}
                       >

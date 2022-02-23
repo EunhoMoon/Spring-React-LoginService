@@ -43,7 +43,6 @@ const BoardDetail = (props) => {
       .then((res) => {
         setBoardData(res);
       });
-    console.log('boardData', boardData);
   }, []);
 
   return (

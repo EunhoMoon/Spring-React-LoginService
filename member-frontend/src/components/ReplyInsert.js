@@ -15,7 +15,6 @@ const ReplyInsert = ({ boardId }) => {
       board: boardId,
       content: replyContent,
     });
-    console.log('reply', reply);
   }, [replyContent]);
 
   const insertReply = () => {
@@ -28,7 +27,6 @@ const ReplyInsert = ({ boardId }) => {
     })
       .then((res) => res.text())
       .then((res) => {
-        console.log('res', res.value);
         if (res == 1) {
           alert('게시글 등록에 성공하였습니다.');
           window.location.replace('/board/detail/' + boardId);
