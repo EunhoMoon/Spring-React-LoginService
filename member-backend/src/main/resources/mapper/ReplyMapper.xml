@@ -16,4 +16,8 @@
 		WHERE a.board = #{boardId} AND a.writer=b.id
 		ORDER BY a.writeDate DESC;
 	</select>
+	
+	<delete id="deleteReply" parameterType="Long">
+		DELETE FROM reply WHERE id=#{replyId}
+	</delete>
 </mapper>

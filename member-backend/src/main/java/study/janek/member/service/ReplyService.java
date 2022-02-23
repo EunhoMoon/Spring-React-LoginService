@@ -33,4 +33,8 @@ public class ReplyService {
 		return dtoList;
 	}
 	
+	public int deleteReply(Long replyId) {
+		return replyMapper.deleteReply(replyId);
+	}
+	
 }

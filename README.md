@@ -83,4 +83,4 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 - JWT 토큰 및 암호화, 권한 설정
 - 관리자 통계 페이지 구현
 - 페이지별 권한 설정
-- 게시글 댓글 기능
+- 게시글 댓글 신고, 삭제 기능

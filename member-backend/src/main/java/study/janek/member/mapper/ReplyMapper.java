@@ -14,4 +14,6 @@ public interface ReplyMapper {
 	
 	List<ReplyDto> getReply(Long boardId);
 	
+	int deleteReply(Long replyId);
+	
 }

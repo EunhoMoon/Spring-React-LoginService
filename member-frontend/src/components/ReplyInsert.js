@@ -57,7 +57,7 @@ const ReplyInsert = ({ boardId }) => {
             />
           </FloatingLabel>
         </Col>
-        <Col xs={5} md={2}>
+        <Col xs={13} md={2}>
           <button
             type="button"
             className="hbutton btn btn-outline-secondary"
