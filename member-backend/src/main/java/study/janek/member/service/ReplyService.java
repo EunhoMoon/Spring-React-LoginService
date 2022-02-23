@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import study.janek.member.dto.ReplyDto;
 import study.janek.member.mapper.ReplyMapper;
 import study.janek.member.model.Reply;
+import study.janek.member.model.Report;
 
 @Service
 public class ReplyService {
@@ -35,6 +37,22 @@ public class ReplyService {
 	
 	public int deleteReply(Long replyId) {
 		return replyMapper.deleteReply(replyId);
+	}
+	
+	@Transactional
+	public int reportReply(Long replyId, Report report) {
+		int result = 0;
+		
+		result = replyMapper.getReportByUser(report);
+		
+		if (result == 1) {
+			result = 2;
+			return result;
+		} else {
+			result = replyMapper.reportReplyByUser(report) == 1 ? replyMapper.reportReply(replyId) : 0;
+		}
+		
+		return replyMapper.reportReply(replyId);
 	}
 	
 }

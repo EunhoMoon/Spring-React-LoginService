@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import study.janek.member.dto.ReplyDto;
 import study.janek.member.model.Reply;
+import study.janek.member.model.Report;
 
 @Mapper
 public interface ReplyMapper {
@@ -15,5 +16,11 @@ public interface ReplyMapper {
 	List<ReplyDto> getReply(Long boardId);
 	
 	int deleteReply(Long replyId);
+	
+	int reportReply(Long replyId);
+	
+	int getReportByUser(Report report);
+	
+	int reportReplyByUser(Report report);
 	
 }

@@ -13,11 +13,29 @@
 		SELECT a.id, a.content,
 		a.writeDate, a.report, b.username
 		FROM reply a, user b
-		WHERE a.board = #{boardId} AND a.writer=b.id
+		WHERE a.board =
+		#{boardId} AND a.writer=b.id
 		ORDER BY a.writeDate DESC;
 	</select>
-	
+
 	<delete id="deleteReply" parameterType="Long">
-		DELETE FROM reply WHERE id=#{replyId}
+		DELETE FROM reply WHERE
+		id=#{replyId}
 	</delete>
+
+	<update id="reportReply" parameterType="Long">
+		UPDATE reply SET report =
+		report + 1 WHERE id=#{replyId}
+	</update>
+
+	<select id="getReportByUser" resultType="int">
+		SELECT COUNT(id)
+		FROM report
+		WHERE reporter=#{reporter} and replyId=#{replyId}
+	</select>
+
+	<insert id="reportReplyByUser">
+		INSERT INTO report (replyId, reportContent, reporter)
+		VALUES (#{replyId}, #{reportContent}, #{reporter})
+	</insert>
 </mapper>

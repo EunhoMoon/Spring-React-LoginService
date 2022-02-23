@@ -45,6 +45,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 ### DB 테이블 세팅
 
 ```sql
+/* 회원 테이블 */
 CREATE TABLE user (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(256) NOT NULL,
@@ -56,6 +57,7 @@ CREATE TABLE user (
   lastLogin DATETIME
 );
 
+/* 게시판 테이블 */
 CREATE TABLE board (
   id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(256) NOT NULL,
@@ -66,6 +68,7 @@ CREATE TABLE board (
   FOREIGN KEY (writer) REFERENCES user (id)
 );
 
+/* 댓글 테이블 */
 CREATE TABLE reply (
 id INT PRIMARY KEY AUTO_INCREMENT,
   writer INT NOT NULL,
@@ -75,6 +78,17 @@ id INT PRIMARY KEY AUTO_INCREMENT,
   report INT DEFAULT 0,
   FOREIGN KEY (writer) REFERENCES user(id),
   FOREIGN KEY (board) REFERENCES board(id)
+);
+
+/* 댓글 신고 테이블 */
+CREATE TABLE report (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	replyId INT NOT NULL,
+  reportContent INT NOT NULL,
+	reporter INT NOT Null,
+	reportDate DATETIME DEFAULT NOW(),
+	FOREIGN KEY (replyid) REFERENCES reply(id),
+	FOREIGN KEY (reporter) REFERENCES user(id)
 );
 ```
 
