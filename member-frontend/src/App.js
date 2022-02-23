@@ -6,7 +6,6 @@ import UserList from './pages/board/UserList';
 import Home from './pages/Home';
 import Join from './pages/user/Join';
 import Login from './pages/user/Login';
-import Success from './pages/user/Success';
 import './css/Page.css';
 import BoardList from './pages/board/BoardList';
 import BoardDetail from './pages/board/BoardDetail';

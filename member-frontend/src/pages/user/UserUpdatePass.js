@@ -25,46 +25,50 @@ const UserUpdatePass = () => {
 
   const submitUpdate = (e) => {
     e.preventDefault();
-    fetch('http://localhost:9595/user/isMem', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify({
-        username: sessionStorage.getItem('username'),
-        password: oldPass,
-      }),
-    })
-      .then((res) => res.text())
-      .then((res) => {
-        if (res == 1) {
-          if (checkPass) {
-            fetch('http://localhost:9595/user/updatePassword', {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json; charset=utf-8',
-              },
-              body: JSON.stringify({
-                id: sessionStorage.getItem('id'),
-                password: newPass,
-              }),
-            })
-              .then((result) => result.text())
-              .then((result) => {
-                if (result == 1) {
-                  alert('비밀번호가 변경되었습니다.');
-                  window.location.replace('/user/myInfo');
-                } else {
-                  alert('비밀번호 변경에 실패하였습니다.');
-                }
-              });
+    if (oldPass !== newPass) {
+      fetch('http://localhost:9595/user/isMem', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify({
+          username: sessionStorage.getItem('username'),
+          password: oldPass,
+        }),
+      })
+        .then((res) => res.text())
+        .then((res) => {
+          if (res == 1) {
+            if (checkPass) {
+              fetch('http://localhost:9595/user/updatePassword', {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json; charset=utf-8',
+                },
+                body: JSON.stringify({
+                  id: sessionStorage.getItem('id'),
+                  password: newPass,
+                }),
+              })
+                .then((result) => result.text())
+                .then((result) => {
+                  if (result == 1) {
+                    alert('비밀번호가 변경되었습니다.');
+                    window.location.replace('/user/myInfo');
+                  } else {
+                    alert('비밀번호 변경에 실패하였습니다.');
+                  }
+                });
+            } else {
+              alert('비밀번호 확인 값이 다릅니다.');
+            }
           } else {
-            alert('비밀번호 확인 값이 다릅니다.');
+            alert('기존 비밀번호를 확인하세요.');
           }
-        } else {
-          alert('기존 비밀번호를 확인하세요.');
-        }
-      });
+        });
+    } else {
+      alert('기존 비밀번호와 같은 번호로 변경할 수 없습니다.');
+    }
   };
 
   return (

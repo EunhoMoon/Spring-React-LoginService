@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import Reply from '../../components/Reply';
+import ReplyInsert from '../../components/ReplyInsert';
 
 const BoardDetail = (props) => {
   const id = props.match.params.id; // 현재 페이지 번호
@@ -121,6 +123,8 @@ const BoardDetail = (props) => {
           </tr>
         </thead>
       </Table>
+      <ReplyInsert boardId={boardData.id} />
+      <Reply boardId={boardData.id} />
     </div>
   );
 };

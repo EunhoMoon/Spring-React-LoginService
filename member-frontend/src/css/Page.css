@@ -70,3 +70,15 @@ ul.pagination li a.active {
   color: blue;
   font-size: small;
 }
+
+.fixsize {
+  resize: none;
+}
+
+.hbutton {
+  height: 57px;
+}
+
+.card {
+  border: 0px;
+}

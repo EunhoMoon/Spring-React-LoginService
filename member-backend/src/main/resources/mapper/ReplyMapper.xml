@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="study.janek.member.mapper.ReplyMapper">
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO reply
+		(writer, board, content)
+		VALUES (#{writer}, #{board}, #{content})
+	</insert>
+
+	<select id="getReply" resultType="ReplyDto">
+		SELECT a.id, a.content,
+		a.writeDate, a.report, b.username
+		FROM reply a, user b
+		WHERE a.board = #{boardId} AND a.writer=b.id
+		ORDER BY a.writeDate DESC;
+	</select>
+</mapper>

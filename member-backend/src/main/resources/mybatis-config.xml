@@ -8,16 +8,17 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias type="study.janek.member.model.Board"
-			alias="Board" />
-		<typeAlias type="study.janek.member.dto.BoardDto"
-			alias="BoardDto" />
+		<typeAlias type="study.janek.member.model.Board" alias="Board" />
+		<typeAlias type="study.janek.member.dto.BoardDto" alias="BoardDto" />
 		<typeAlias type="study.janek.member.model.User" alias="User" />
+		<typeAlias type="study.janek.member.model.Reply" alias="Reply"/>
+		<typeAlias type="study.janek.member.dto.ReplyDto" alias="ReplyDto"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mapper/BoardMapper.xml" />
 		<mapper resource="mapper/UserMapper.xml" />
+		<mapper resource="mapper/ReplyMapper.xml" />
 	</mappers>
 
 </configuration>
