@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import imgA from '../img/report.png';
 import Modal from './Modal';
 
@@ -121,6 +121,8 @@ const Reply = ({ boardId }) => {
                   ) : (
                     ''
                   )}
+
+                  {/* Modal 시작 */}
                   <Modal
                     open={modalOpen}
                     close={closeModal}
@@ -138,16 +140,18 @@ const Reply = ({ boardId }) => {
                         <option value={2}>광고성 댓글</option>
                         <option value={3}>반복적인 댓글</option>
                       </Form.Select>
-                      <div>
-                        <button type="submit" className="close">
+                      <Container className="mt-2" align="center">
+                        <Button type="submit" className="btn-success">
                           확인
-                        </button>
-                        <button className="close" onClick={closeModal}>
+                        </Button>
+                        &nbsp;
+                        <Button className="btn-secondary" onClick={closeModal}>
                           취소
-                        </button>
-                      </div>
+                        </Button>
+                      </Container>
                     </Form>
                   </Modal>
+                  {/* Modal 종료 */}
                 </div>
               </Col>
             </Row>
