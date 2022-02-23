@@ -67,14 +67,14 @@ CREATE TABLE board (
 );
 
 CREATE TABLE reply (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	writer INT NOT NULL,
-	board INT NOT NULL,
-	content VARCHAR(500) NOT NULL,
-	writeDate DATETIME NOW(),
-	report INT DEFAULT 0,
-	FOREIGN KEY (writer) REFERENCES user(id),
-	FOREIGN KEY (board) REFERENCES board(id)
+id INT PRIMARY KEY AUTO_INCREMENT,
+  writer INT NOT NULL,
+  board INT NOT NULL,
+  content VARCHAR(500) NOT NULL,
+  writeDate DATETIME NOW(),
+  report INT DEFAULT 0,
+  FOREIGN KEY (writer) REFERENCES user(id),
+  FOREIGN KEY (board) REFERENCES board(id)
 );
 ```
 
