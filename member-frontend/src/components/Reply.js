@@ -102,7 +102,7 @@ const Reply = ({ boardId }) => {
                     >
                       삭제
                     </Button>
-                  ) : (
+                  ) : sessionStorage.getItem('role') !== 'ADMIN' ? (
                     <Button
                       variant="outline-success"
                       size="sm"
@@ -118,6 +118,8 @@ const Reply = ({ boardId }) => {
                       />
                       신고
                     </Button>
+                  ) : (
+                    ''
                   )}
                   <Modal
                     open={modalOpen}
