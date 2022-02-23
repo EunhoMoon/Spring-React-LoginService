@@ -82,13 +82,13 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 
 /* 댓글 신고 테이블 */
 CREATE TABLE report (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	replyId INT NOT NULL,
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  replyId INT NOT NULL,
   reportContent INT NOT NULL,
-	reporter INT NOT Null,
-	reportDate DATETIME DEFAULT NOW(),
-	FOREIGN KEY (replyid) REFERENCES reply(id),
-	FOREIGN KEY (reporter) REFERENCES user(id)
+  reporter INT NOT Null,
+  reportDate DATETIME DEFAULT NOW(),
+  FOREIGN KEY (replyid) REFERENCES reply(id),
+  FOREIGN KEY (reporter) REFERENCES user(id)
 );
 ```
 
@@ -97,4 +97,3 @@ CREATE TABLE report (
 - JWT 토큰 및 암호화, 권한 설정
 - 관리자 통계 페이지 구현
 - 페이지별 권한 설정
-- 게시글 댓글 신고, 삭제 기능
