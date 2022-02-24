@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
-import imgA from '../img/report.png';
+import imgA from '../images/report.png';
 import Modal from './Modal';
 
 const Reply = ({ boardId }) => {
@@ -37,7 +37,7 @@ const Reply = ({ boardId }) => {
       })
         .then((delRes) => delRes.text())
         .then((delRes) => {
-          if (delRes == 1) {
+          if (delRes === '1') {
             alert('댓글이 삭제되었습니다.');
             window.location.replace('/board/detail/' + boardId);
           } else {
@@ -135,7 +135,9 @@ const Reply = ({ boardId }) => {
                           setReportContent(e.target.value);
                         }}
                       >
-                        <option>========신고 내용을 선택하세요.========</option>
+                        <option align="center">
+                          ==========신고 내용을 선택하세요.==========
+                        </option>
                         <option value={1}>욕설/차별 등 혐오 발언</option>
                         <option value={2}>광고성 댓글</option>
                         <option value={3}>반복적인 댓글</option>
