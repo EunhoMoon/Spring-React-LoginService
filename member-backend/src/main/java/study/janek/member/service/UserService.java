@@ -15,7 +15,6 @@ public class UserService {
 	@Autowired
 	private UserMapper userMapper;
 	
-	
 	public UserService(UserMapper userMapper) {
 		this.userMapper = userMapper;
 	}

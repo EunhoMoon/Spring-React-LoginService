@@ -13,11 +13,11 @@ const BoardList = (props) => {
   const [keyword, setKeyword] = useState('');
 
   const setKey = (e) => {
-    setK(e.target.value);
+    setKeyword(e.target.value);
   };
 
   const search = () => {
-    fetch('http://localhost:9595' + link + 1 + '?keyword=' + k, {
+    fetch('http://localhost:9595' + link + 1 + '?keyword=' + keyword, {
       method: 'GET',
     })
       .then((res) => res.json())
@@ -25,7 +25,7 @@ const BoardList = (props) => {
         setBoards(res);
       });
 
-    fetch('http://localhost:9595/board/all?keyword=' + k, {
+    fetch('http://localhost:9595/board/all?keyword=' + keyword, {
       method: 'GET',
     })
       .then((res) => res.json())
@@ -42,7 +42,7 @@ const BoardList = (props) => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:9595' + link + pNum + '?keyword=', {
+    fetch('http://localhost:9595' + link + pNum + '?keyword=' + keyword, {
       method: 'GET',
     })
       .then((res) => res.json())
@@ -50,7 +50,7 @@ const BoardList = (props) => {
         setBoards(res);
       });
 
-    fetch('http://localhost:9595/board/all?keyword=', {
+    fetch('http://localhost:9595/board/all?keyword=' + keyword, {
       method: 'GET',
     })
       .then((res) => res.json())
@@ -77,7 +77,12 @@ const BoardList = (props) => {
         </thead>
         <tbody>
           {boards.map((board) => (
-            <BoardItem board={board} pNum={pNum} key={board.id} />
+            <BoardItem
+              board={board}
+              pNum={pNum}
+              keyword={keyword}
+              key={board.id}
+            />
           ))}
         </tbody>
       </Table>

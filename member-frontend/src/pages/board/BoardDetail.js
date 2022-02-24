@@ -7,6 +7,7 @@ import ReplyInsert from '../../components/ReplyInsert';
 const BoardDetail = (props) => {
   const id = props.match.params.id; // 현재 페이지 번호
   const pNum = useLocation().state.pNum; // location을 사용하기 위해 선언
+  const keyword = useLocation().state.keyword;
 
   const [boardData, setBoardData] = useState({
     id: '',
@@ -48,7 +49,11 @@ const BoardDetail = (props) => {
   return (
     <div className="container mt-2">
       <div className="d-flex flex-row-reverse">
-        <Link to={'/board/list/' + pNum} className="btn btn-secondary mb-1">
+        <Link
+          to={'/board/list/' + pNum}
+          keyword={keyword}
+          className="btn btn-secondary mb-1"
+        >
           목록으로
         </Link>
         &nbsp;

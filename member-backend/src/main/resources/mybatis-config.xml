@@ -13,12 +13,14 @@
 		<typeAlias type="study.janek.member.model.User" alias="User" />
 		<typeAlias type="study.janek.member.model.Reply" alias="Reply"/>
 		<typeAlias type="study.janek.member.dto.ReplyDto" alias="ReplyDto"/>
+		<typeAlias type="study.janek.member.model.ChartData" alias="Chart"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mapper/BoardMapper.xml" />
 		<mapper resource="mapper/UserMapper.xml" />
 		<mapper resource="mapper/ReplyMapper.xml" />
+		<mapper resource="mapper/ChartMapper.xml" />
 	</mappers>
 
 </configuration>

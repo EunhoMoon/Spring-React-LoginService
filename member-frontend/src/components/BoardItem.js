@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const BoardItem = (props) => {
   const { id, no, title, username, writeDate, readCnt, isNew } = props.board;
-  const { pNum } = props;
+  const { pNum, keyword } = props;
   const newButton = (
     <Badge pill bg="success">
       New
@@ -18,7 +18,7 @@ const BoardItem = (props) => {
         <Link
           to={{
             pathname: '/board/detail/' + id,
-            state: { pNum },
+            state: { pNum, keyword },
           }}
           className="linkText"
         >

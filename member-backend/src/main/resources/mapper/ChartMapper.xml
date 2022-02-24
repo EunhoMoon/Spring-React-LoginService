@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="study.janek.member.mapper.ChartMapper">
+	<select id="boardCount" parameterType="String"
+		resultType="int">
+		SELECT COUNT(writeDate) FROM board WHERE writeDate LIKE '${date}%'
+	</select>
+	
+	<select id="replyCount" parameterType="String"
+		resultType="int">
+		SELECT COUNT(writeDate) FROM reply WHERE writeDate LIKE '${date}%'
+	</select>
+</mapper>

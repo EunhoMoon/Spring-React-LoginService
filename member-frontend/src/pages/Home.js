@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import Chart from './Chart';
 
 const Home = (props) => {
   return (
-    <div className="container">
-      <h1>메인화면</h1>
+    <div className="container p-3">
+      <Chart />
     </div>
   );
 };
