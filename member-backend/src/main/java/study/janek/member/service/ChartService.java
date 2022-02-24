@@ -29,8 +29,7 @@ public class ChartService {
 			ChartData chartData = new ChartData();
 			String date = now.minusDays(i).toString();
 			
-			chartData.setData(chartMapper.boardCount(date));
-			chartData.setData2(chartMapper.replyCount(date));
+			chartData = chartMapper.boardAndReply(date);
 			chartData.setName(now.minusDays(i).getDayOfMonth() + "일");
 			
 			chartDataList.add(chartData);

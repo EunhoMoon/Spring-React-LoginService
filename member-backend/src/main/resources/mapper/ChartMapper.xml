@@ -2,13 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="study.janek.member.mapper.ChartMapper">
-	<select id="boardCount" parameterType="String"
-		resultType="int">
-		SELECT COUNT(writeDate) FROM board WHERE writeDate LIKE '${date}%'
+	<select id="boardAndReply" parameterType="String"
+		resultType="Chart">
+		SELECT (SELECT COUNT(writeDate) FROM board WHERE writeDate LIKE '${date}%') AS DATA, 
+	(SELECT COUNT(writeDate) FROM reply WHERE writeDate LIKE '${date}%') AS DATA2 
 	</select>
 	
-	<select id="replyCount" parameterType="String"
-		resultType="int">
-		SELECT COUNT(writeDate) FROM reply WHERE writeDate LIKE '${date}%'
-	</select>
 </mapper>

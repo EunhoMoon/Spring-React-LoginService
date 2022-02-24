@@ -9,7 +9,5 @@ import study.janek.member.model.ChartData;
 @Mapper
 public interface ChartMapper {
 
-	int boardCount(String date);
-
-	int replyCount(String date);
+	ChartData boardAndReply(String date);
 }
