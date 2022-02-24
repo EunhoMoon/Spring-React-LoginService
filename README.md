@@ -23,10 +23,14 @@
 - npm i jquery
   -->
 - npm i styled-components
-  // 웹 에디터 템플릿
+
+#### 웹 에디터 템플릿
+
 - npm i react-draft-wysiwyg draft-js
 - npm i draftjs-to-html
-  // 차트 템플릿
+
+#### 차트 템플릿
+
 - npm install apexcharts
 - npm install react-apexcharts
 
