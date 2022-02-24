@@ -2,10 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="study.janek.member.mapper.ChartMapper">
+
+	<select id="getbestBoard" resultType="BoardDto">
+		SELECT * FROM board
+		WHERE writeDate BETWEEN DATE_ADD(NOW(), INTERVAL -1 WEEK ) AND NOW()
+		ORDER BY readcnt DESC LIMIT 2
+	</select>
+
 	<select id="boardAndReply" parameterType="String"
 		resultType="Chart">
-		SELECT (SELECT COUNT(writeDate) FROM board WHERE writeDate LIKE '${date}%') AS DATA, 
-	(SELECT COUNT(writeDate) FROM reply WHERE writeDate LIKE '${date}%') AS DATA2 
+		SELECT 
+			(SELECT COUNT(writeDate) FROM board WHERE writeDate LIKE '${date}%') 
+		AS data,
+			(SELECT COUNT(writeDate) FROM reply WHERE writeDate LIKE '${date}%') 
+		AS data2
 	</select>
-	
+
 </mapper>

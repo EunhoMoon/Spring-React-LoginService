@@ -1,6 +1,7 @@
 package study.janek.member.service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +9,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import study.janek.member.dto.BoardDto;
 import study.janek.member.mapper.ChartMapper;
+import study.janek.member.model.Board;
 import study.janek.member.model.ChartData;
 
 @Service
@@ -19,6 +22,26 @@ public class ChartService {
 
 	public ChartService(ChartMapper chartMapper) {
 		this.chartMapper = chartMapper;
+	}
+	
+	public List<BoardDto> getbestBoard() {
+		List<BoardDto> boardList = chartMapper.getbestBoard();
+		int no = 1;
+		for (BoardDto boardDto : boardList) {
+			
+			if (boardDto.getTitle().length() > 12) {
+				boardDto.setTitle(boardDto.getTitle().substring(0, 12) + "...");
+			}
+			
+			if (boardDto.getContent().length() > 50) {
+				boardDto.setTitle(boardDto.getTitle().substring(0, 48) + "...");
+			}
+			
+			boardDto.setNo(no);
+			no++;
+		}
+		
+		return boardList;
 	}
 
 	public List<ChartData> boardAndReply() {

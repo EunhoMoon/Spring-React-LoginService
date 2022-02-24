@@ -44,7 +44,7 @@ const Chart = () => {
       },
       title: {
         text: '게시글 작성 및 댓글 작성 현황',
-        align: 'center',
+        align: 'left',
       },
       grid: {
         row: {
@@ -58,13 +58,15 @@ const Chart = () => {
     },
   };
   return (
-    <ApexCharts
-      options={state.options}
-      series={state.series}
-      typs="line"
-      width={'100%'}
-      height={300}
-    />
+    <div style={{ padding: 30 }}>
+      <ApexCharts
+        options={state.options}
+        series={state.series}
+        typs="line"
+        width={'100%'}
+        height={300}
+      />
+    </div>
   );
 };
 
