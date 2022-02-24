@@ -9,7 +9,7 @@ const Reply = ({ boardId }) => {
   const [replyId, setReplyId] = useState();
   const [reportContent, setReportContent] = useState({});
 
-  // ==================================================
+  // ==================== Modal 설정 시작 ==============================
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = (e) => {
@@ -19,6 +19,7 @@ const Reply = ({ boardId }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
+  // ==================== Modal 설정 종료 ==============================
 
   useEffect(() => {
     fetch(link, {
@@ -82,7 +83,12 @@ const Reply = ({ boardId }) => {
       className=" position-relative mb-2"
     >
       {replyDatas.map((reply) => (
-        <Card position="top-end" className="p-1 card" key={reply.id}>
+        <Card
+          position="top-end"
+          className="p-1 card"
+          key={reply.id}
+          className="mb-1"
+        >
           <Card.Header>
             <Row>
               <Col md={2}>
@@ -122,7 +128,7 @@ const Reply = ({ boardId }) => {
                     ''
                   )}
 
-                  {/* Modal 시작 */}
+                  {/*================ Modal 시작 ================*/}
                   <Modal
                     open={modalOpen}
                     close={closeModal}
@@ -153,7 +159,7 @@ const Reply = ({ boardId }) => {
                       </Container>
                     </Form>
                   </Modal>
-                  {/* Modal 종료 */}
+                  {/*================ Modal 종료 ================*/}
                 </div>
               </Col>
             </Row>

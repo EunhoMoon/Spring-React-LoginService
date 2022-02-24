@@ -17,13 +17,7 @@ const BoardList = (props) => {
   };
 
   const search = () => {
-    console.log('k', k);
-    setKeyword(k);
-    console.log('keyword', keyword);
-  };
-
-  useEffect(() => {
-    fetch('http://localhost:9595' + link + pNum + '?keyword=' + keyword, {
+    fetch('http://localhost:9595' + link + 1 + '?keyword=' + k, {
       method: 'GET',
     })
       .then((res) => res.json())
@@ -31,7 +25,32 @@ const BoardList = (props) => {
         setBoards(res);
       });
 
-    fetch('http://localhost:9595/board/all?keyword=' + keyword, {
+    fetch('http://localhost:9595/board/all?keyword=' + k, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .then(
+        (res) => {
+          setTotalPage(
+            res.length > 10 && res.length % 10 > 0
+              ? parseInt(res.length / 10) + 1
+              : parseInt(res.length / 10),
+          );
+        },
+        [pNum],
+      );
+  };
+
+  useEffect(() => {
+    fetch('http://localhost:9595' + link + pNum + '?keyword=', {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setBoards(res);
+      });
+
+    fetch('http://localhost:9595/board/all?keyword=', {
       method: 'GET',
     })
       .then((res) => res.json())
@@ -42,7 +61,7 @@ const BoardList = (props) => {
             : parseInt(res.length / 10),
         );
       });
-  }, [pNum, keyword]);
+  }, [pNum]);
 
   return (
     <div className="container mt-2">
