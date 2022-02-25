@@ -43,6 +43,26 @@ public class ChartService {
 		
 		return boardList;
 	}
+	
+	public List<BoardDto> getbestReply() {
+		List<BoardDto> boardList = chartMapper.getbestReply();
+		int no = 1;
+		for (BoardDto boardDto : boardList) {
+			
+			if (boardDto.getTitle().length() > 12) {
+				boardDto.setTitle(boardDto.getTitle().substring(0, 12) + "...");
+			}
+			
+			if (boardDto.getContent().length() > 50) {
+				boardDto.setTitle(boardDto.getTitle().substring(0, 48) + "...");
+			}
+			
+			boardDto.setNo(no);
+			no++;
+		}
+		
+		return boardList;
+	}
 
 	public List<ChartData> boardAndReply() {
 		List<ChartData> chartDataList = new ArrayList<ChartData>();

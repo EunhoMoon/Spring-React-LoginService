@@ -11,6 +11,8 @@ import study.janek.member.model.ChartData;
 public interface ChartMapper {
 
 	List<BoardDto> getbestBoard();
+
+	List<BoardDto> getbestReply();
 	
 	ChartData boardAndReply(String date);
 	

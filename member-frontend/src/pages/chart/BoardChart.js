@@ -42,10 +42,6 @@ const BoardChart = () => {
       stroke: {
         curve: 'straight',
       },
-      title: {
-        text: '게시글 작성 및 댓글 작성 현황',
-        align: 'left',
-      },
       grid: {
         row: {
           colors: ['#f3f3f3f3', 'transparent'],

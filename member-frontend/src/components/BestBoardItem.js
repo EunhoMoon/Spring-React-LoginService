@@ -1,16 +1,17 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import bestIcon from '../images/top-rated.png';
+import medal_gold from '../images/medal_gold.png';
+import medal_silver from '../images/medal_silver.png';
 
 const BestBoardItem = ({ board }) => {
   return (
-    <Card style={{ width: '20rem', padding: '1px' }}>
+    <Card style={{ width: '45%', padding: '1px' }}>
       <Card.Body>
         <Card.Title className="mb-3">
           <strong>{board.title}</strong>
           <span style={{ float: 'right' }}>
             <img
-              src={bestIcon}
+              src={board.no === 1 ? medal_gold : medal_silver}
               width="35"
               height="35"
               className="mb-1"

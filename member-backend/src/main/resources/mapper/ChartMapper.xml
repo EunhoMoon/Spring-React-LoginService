@@ -5,24 +5,38 @@
 
 	<select id="getbestBoard" resultType="BoardDto">
 		SELECT * FROM board
-		WHERE writeDate BETWEEN DATE_ADD(NOW(), INTERVAL -1 WEEK ) AND NOW()
-		ORDER BY readcnt DESC LIMIT 2
+		WHERE
+		writeDate BETWEEN DATE_ADD(NOW(), INTERVAL -1 WEEK ) AND NOW()
+		ORDER BY
+		readcnt DESC LIMIT 2
+	</select>
+
+	<select id="getbestReply" resultType="BoardDto">
+		SELECT a.* FROM board a,
+		(SELECT board, COUNT(id) count FROM reply GROUP BY board) b WHERE a.id = b.board
+		<!-- 이게 이런 식으로도 되는구나...(FROM절...) -->
+		ORDER BY b.count DESC LIMIT 2
 	</select>
 
 	<select id="boardAndReply" parameterType="String"
 		resultType="Chart">
-		SELECT 
-			(SELECT COUNT(writeDate) FROM board WHERE writeDate LIKE '${date}%') 
+		SELECT
+		(SELECT COUNT(writeDate) FROM board WHERE writeDate
+		LIKE '${date}%')
 		AS data,
-			(SELECT COUNT(writeDate) FROM reply WHERE writeDate LIKE '${date}%') 
+		(SELECT COUNT(writeDate) FROM reply WHERE
+		writeDate LIKE '${date}%')
 		AS data2
 	</select>
-	
-	<select id="memberJoin" parameterType="String" resultType="Chart">
-		SELECT 
-			(SELECT COUNT(createDate) FROM user WHERE createDate LIKE '${pastdate}%') 
+
+	<select id="memberJoin" parameterType="String"
+		resultType="Chart">
+		SELECT
+		(SELECT COUNT(createDate) FROM user WHERE createDate
+		LIKE '${pastdate}%')
 		AS data,
-			(SELECT COUNT(createDate) FROM user WHERE createDate LIKE '${date}%') 
+		(SELECT COUNT(createDate) FROM user WHERE
+		createDate LIKE '${date}%')
 		AS data2
 	</select>
 

@@ -22,6 +22,11 @@ public class ChartRestController {
 	public List<BoardDto> bestBoard() {
 		return chartService.getbestBoard();
 	}
+	
+	@GetMapping("/chart/bestReply")
+	public List<BoardDto> bestReply() {
+		return chartService.getbestReply();
+	}
 
 	@GetMapping("/chart/boardAndReply")
 	public List<ChartData> boardAndReply() {
