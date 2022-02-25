@@ -17,5 +17,13 @@
 			(SELECT COUNT(writeDate) FROM reply WHERE writeDate LIKE '${date}%') 
 		AS data2
 	</select>
+	
+	<select id="memberJoin" parameterType="String" resultType="Chart">
+		SELECT 
+			(SELECT COUNT(createDate) FROM user WHERE createDate LIKE '${pastdate}%') 
+		AS data,
+			(SELECT COUNT(createDate) FROM user WHERE createDate LIKE '${date}%') 
+		AS data2
+	</select>
 
 </mapper>

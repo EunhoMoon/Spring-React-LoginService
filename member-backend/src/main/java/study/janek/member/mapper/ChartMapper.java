@@ -14,4 +14,6 @@ public interface ChartMapper {
 	
 	ChartData boardAndReply(String date);
 	
+	ChartData memberJoin(String date, String pastdate);
+	
 }

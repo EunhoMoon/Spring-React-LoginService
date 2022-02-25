@@ -16,6 +16,7 @@ import MyInfo from './pages/user/MyInfo';
 import UserUpdate from './pages/user/UserUpdate';
 import UserUpdatePass from './pages/user/UserUpdatePass';
 import NoAuthority from './components/NoAuthority';
+import Static from './pages/admin/Static';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -59,6 +60,7 @@ function App() {
       <Route path={'/board/write'} exact={true} component={BoardWrite} />
       <Route path={'/board/update'} exact={true} component={BoardUpdate} />
       <Route path={'/board/detail/:id'} exact={true} component={BoardDetail} />
+      <Route path={'/admin/static/'} exact={true} component={Static} />
     </div>
   );
 }

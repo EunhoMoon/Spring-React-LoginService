@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import ApexCharts from 'react-apexcharts';
+import ReactApexChart from 'react-apexcharts';
 
-const Chart = () => {
+const JoinChart = () => {
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
   const [nameList, setNameList] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:9595/chart/boardAndReply', {
+    fetch('http://localhost:9595/chart/memberJoin', {
       method: 'GET',
     })
       .then((res) => res.json())
@@ -21,53 +21,53 @@ const Chart = () => {
   const state = {
     series: [
       {
-        name: '게시글 수',
+        name: '전주 가입자',
         data: data,
       },
       {
-        name: '댓글 수',
+        name: '금주 가입자',
         data: data2,
       },
     ],
-
     options: {
       chart: {
-        zoom: {
-          enabled: false,
+        type: 'bar',
+        height: 300,
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: '55%',
+          endingShape: 'rounded',
         },
       },
       dataLabels: {
         enabled: false,
       },
       stroke: {
-        curve: 'straight',
-      },
-      title: {
-        text: '게시글 작성 및 댓글 작성 현황',
-        align: 'left',
-      },
-      grid: {
-        row: {
-          colors: ['#f3f3f3f3', 'transparent'],
-          opacity: 0.5,
-        },
+        show: true,
+        width: 2,
+        colors: ['transparent'],
       },
       xaxis: {
         categories: nameList,
+      },
+
+      fill: {
+        opacity: 1,
       },
     },
   };
   return (
     <div style={{ padding: 30 }}>
-      <ApexCharts
+      <ReactApexChart
         options={state.options}
         series={state.series}
-        typs="line"
-        width={'100%'}
+        type="bar"
         height={300}
       />
     </div>
   );
 };
 
-export default Chart;
+export default JoinChart;

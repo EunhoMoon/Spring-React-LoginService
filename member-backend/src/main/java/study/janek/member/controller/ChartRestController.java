@@ -28,4 +28,9 @@ public class ChartRestController {
 		return chartService.boardAndReply();
 	}
 	
+	@GetMapping("/chart/memberJoin")
+	public List<ChartData> memberJoin() {
+		return chartService.memberJoin();
+	}
+	
 }

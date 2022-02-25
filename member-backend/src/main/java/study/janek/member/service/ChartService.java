@@ -60,5 +60,23 @@ public class ChartService {
 
 		return chartDataList;
 	}
+	
+	public List<ChartData> memberJoin() {
+		List<ChartData> chartDataList = new ArrayList<ChartData>();
+		LocalDate now = LocalDate.now();
+
+		for (int i = 6, j = 0 ; i >= 0 ; i--, j++) {
+			ChartData chartData = new ChartData();
+			String date = now.minusDays(i).toString();
+			String pastdate = now.minusDays(i + 7).toString();
+			
+			chartData = chartMapper.memberJoin(date, pastdate);
+			chartData.setName(now.minusDays(i).getDayOfMonth() + "일");
+			
+			chartDataList.add(chartData);
+		}
+
+		return chartDataList;
+	}
 
 }

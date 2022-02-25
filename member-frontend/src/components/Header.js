@@ -13,7 +13,7 @@ const Header = ({ isLogin, isAdmin }) => {
           {isLogin ? (
             <Link
               className="nav-link"
-              to=""
+              to="/"
               onClick={() => {
                 sessionStorage.clear();
                 window.location.replace('/');
@@ -34,9 +34,7 @@ const Header = ({ isLogin, isAdmin }) => {
             <Link className="nav-link" to="/user/list/1">
               Member
             </Link>
-          ) : (
-            ''
-          )}
+          ) : null}
           {isLogin ? (
             <Link className="nav-link" to="/board/list/1">
               Board
@@ -46,6 +44,11 @@ const Header = ({ isLogin, isAdmin }) => {
               Join
             </Link>
           )}
+          {isAdmin ? (
+            <Link className="nav-link" to="/admin/static">
+              Statics
+            </Link>
+          ) : null}
         </Nav>
       </Container>
     </Navbar>
