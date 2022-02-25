@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Container, Tab, Tabs } from 'react-bootstrap';
 import BoardChart from '../chart/BoardChart';
 import JoinChart from '../chart/JoinChart';
 import MemberChart from '../chart/MemberChart';
 
 const Static = () => {
-  const [changeTabs, setChangeTabs] = useState(1);
-  console.log(changeTabs);
   return (
     <Container className="mt-4">
       <Tabs defaultActiveKey="static1">

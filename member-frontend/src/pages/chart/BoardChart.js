@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ApexCharts from 'react-apexcharts';
 
-const BoardChart = () => {
-  const [data, setData] = useState([]);
-  const [data2, setData2] = useState([]);
+const BoardChart = ({ result }) => {
+  const [boardData, setBoardData] = useState([]);
+  const [boardData2, setBoardData2] = useState([]);
   const [nameList, setNameList] = useState([]);
 
   useEffect(() => {
@@ -12,8 +12,8 @@ const BoardChart = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        setData(res.map((data) => data.data));
-        setData2(res.map((data) => data.data2));
+        setBoardData(res.map((data) => data.data));
+        setBoardData2(res.map((data) => data.data2));
         setNameList(res.map((data) => data.name));
       });
   }, []);
@@ -22,11 +22,11 @@ const BoardChart = () => {
     series: [
       {
         name: '게시글 수',
-        data: data,
+        data: boardData,
       },
       {
         name: '댓글 수',
-        data: data2,
+        data: boardData2,
       },
     ],
 
