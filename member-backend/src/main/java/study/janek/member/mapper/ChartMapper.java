@@ -18,4 +18,6 @@ public interface ChartMapper {
 	
 	ChartData memberJoin(String date, String pastdate);
 	
+	ChartData getMemberCount();
+	
 }

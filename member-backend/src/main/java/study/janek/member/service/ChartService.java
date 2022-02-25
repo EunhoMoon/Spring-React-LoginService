@@ -98,5 +98,11 @@ public class ChartService {
 
 		return chartDataList;
 	}
+	
+	public ChartData getMemberCount() {
+		ChartData chartData = chartMapper.getMemberCount();
+		chartData.setName("Member Count");
+		return chartData;
+	}
 
 }

@@ -38,4 +38,9 @@ public class ChartRestController {
 		return chartService.memberJoin();
 	}
 	
+	@GetMapping("/chart/getMemberCount")
+	public ChartData getMemberCount() {
+		return chartService.getMemberCount();
+	}
+	
 }

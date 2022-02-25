@@ -13,7 +13,8 @@
 
 	<select id="getbestReply" resultType="BoardDto">
 		SELECT a.* FROM board a,
-		(SELECT board, COUNT(id) count FROM reply GROUP BY board) b WHERE a.id = b.board
+		(SELECT board, COUNT(id) count FROM reply
+		GROUP BY board) b WHERE a.id = b.board
 		<!-- 이게 이런 식으로도 되는구나...(FROM절...) -->
 		ORDER BY b.count DESC LIMIT 2
 	</select>
@@ -38,6 +39,47 @@
 		(SELECT COUNT(createDate) FROM user WHERE
 		createDate LIKE '${date}%')
 		AS data2
+	</select>
+	
+	<select id="getMemberCount" resultType="Chart">
+	SELECT * FROM
+		(SELECT 
+			COUNT(a.id) AS data 
+		FROM 
+			user a, (SELECT writer FROM board GROUP BY writer) b 
+		WHERE 
+			a.id = b.writer) a,
+		<!-- 한번이라도 글을 쓴 사람의 수를 구하는 쿼리 -->
+	
+		(SELECT 
+			COUNT(id) AS data2
+		FROM 
+			user WHERE (lastLogin != NULL OR lastLogin != "")
+			AND 
+			id NOT IN(SELECT writer FROM board GROUP BY writer)) b,
+		<!-- 가입 후 로그인은 했으나 글은 쓰지 않은 사람의 수를 구하는 쿼리 -->
+		
+		(SELECT 
+			(SELECT 
+				COUNT(*) 
+			FROM user) 
+			- 
+			((SELECT 
+				COUNT(a.id) AS data 
+			FROM 
+				user a, (SELECT writer FROM board GROUP BY writer) b 
+			WHERE 
+				a.id = b.writer) 
+			+ 
+			(SELECT 
+				COUNT(id) AS data2 
+			FROM 
+				user 
+			WHERE 
+				(lastLogin != NULL OR lastLogin != "") 
+			AND 
+				id NOT IN(SELECT writer FROM board GROUP BY writer))) AS data3) c
+		<!-- 가입만 하고 로그인도, 글도 작성 안한 사람의 수를 구하는 쿼리 -->
 	</select>
 
 </mapper>
